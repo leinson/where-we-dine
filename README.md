@@ -74,3 +74,14 @@
 - A user can do a list of restaurants they want to visit 
 
  
+## How to install (in progress)
+
+- Clone repository to your computer
+- Install virtual enviroment into the project folder: python3 -m venv venv
+- Go to virtual environment: $ source venv/bin/activate
+- Install requirements: pip install -r requirements.txt
+- Add file: .env , add to it:DATABASE_URL=postgresql+psycopg2:///yourusername . Also add a SECRET_KEY ?
+- change to your username in db.py
+- Install postgresql (https://hy-tsoha.github.io/materiaali/osa-2/#tietokannan-k%C3%A4ytt%C3%A4minen)
+- Open start-pg.sh in another terminal - keep open
+- Run app: flask run
