@@ -33,6 +33,8 @@
     - City 
 
     - Add cuisine and price tags 
+    
+    - Can edit all info about a restaurant afterwards
 
 
 ### Page and account management
@@ -65,13 +67,15 @@
 
 ### “Nice to have’s”
 
-- A user can add a restaurant by themselves, without info & tags 
+- A user can add a restaurant without info & tags 
 
-    - An admin can later add the info & tags 
+    - An admin can later "verify" the restaurant, and add the info & tags 
 
 - A user can edit their own review after it is posted 
 
 - A user can do a list of restaurants they want to visit 
+
+- A user can add pictures to their review
 
  
 ## How to install (in progress)
