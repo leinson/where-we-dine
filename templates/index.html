@@ -1,3 +1,16 @@
 <h1>where we dine</h1>
 
-<p>Ravintoloiden arvostelusovellus - Tietokantojen harjoitustyö Helsingin yliopistolla</p>
+<p>Restaurant review app - Database application study project at University of Helsinki</p>
+
+{% for review in reviews %}
+    <hr>
+    Restaurant: {{ review[1] }}
+    <p>
+    Review by {{ review[3] }}: {{ review[0] }}
+    <p>
+    Score: {{ review[2] }}
+    <hr>
+{% endfor %}
+
+<p>
+Amount of reviews: {{ count }}
