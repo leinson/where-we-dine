@@ -13,4 +13,12 @@
 {% endfor %}
 
 <p>
-Amount of reviews: {{ count }}
+    Amount of reviews: {{ count }}
+<p>
+
+{% if session.user_id %}
+    You are logged in.
+    <a href="/logout">Log out</a>
+{% else %}
+    <a href="/login">Log in</a>
+{% endif %}
