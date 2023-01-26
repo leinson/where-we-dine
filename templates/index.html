@@ -1,19 +1,18 @@
 <h1>where we dine</h1>
 
 <p>Restaurant review app - Database application study project at University of Helsinki</p>
+<h2>the restaurants</h2>
 
-{% for review in reviews %}
+{% for restaurant in restaurants %}
     <hr>
-    Restaurant: {{ review[1] }}
-    <p>
-    Review by {{ review[3] }}: {{ review[0] }}
-    <p>
-    Score: {{ review[2] }}
+    <b>{{ restaurant.name }}</b><br>
+    <br>
+    <a href="/reviews/{{ restaurant.id }}">View the reviews</a>
     <hr>
 {% endfor %}
 
 <p>
-    Amount of reviews: {{ count }}
+    Amount of restaurants: {{ count }}
 <p>
 
 {% if session.user_id %}

@@ -1,0 +1,25 @@
+
+<h2>{{ restaurant.name }}</h2>
+<p>
+    {{ restaurant.info }}<br>
+    <br>
+    {{ restaurant.city }}<br>
+    <br>
+    <a href="{{ restaurant.web_link }}">Go to restaurants own web page</a>
+</p>
+
+{% for review in reviews %}
+    <hr>
+    Review by {{ review[3] }}<br>
+    <br>
+    Review: {{ review[0] }}<br>
+    <br>
+    Score: {{ review[2] }}
+    <hr>
+{% endfor %}
+
+<p>
+    Amount of reviews: {{ count }}
+<p>
+
+<a href="/">Back to front page</a>

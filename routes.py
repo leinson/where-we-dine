@@ -5,8 +5,15 @@ import users, reviews
 
 @app.route("/")
 def index():
-    list = reviews.get_reviews()
-    return render_template("index.html", count=len(list), reviews=list)
+    list = reviews.get_restaurants()
+    return render_template("index.html", count=len(list), restaurants=list)
+
+@app.route("/reviews/<int:id>")
+def show_reviews(id):
+    list = reviews.get_reviews_and_info(id)
+    about = reviews.get_restaurant_info(id)
+    return render_template("reviews.html", count=len(list), reviews=list, restaurant=about)
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
