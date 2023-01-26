@@ -15,8 +15,8 @@
     Amount of restaurants: {{ count }}
 <p>
 
-{% if session.user_id %}
-    You are logged in.
+{% if session.username %}
+    You are logged in as {{ session.username }}. <br>
     <a href="/logout">Log out</a>
 {% else %}
     <a href="/login">Log in</a>
