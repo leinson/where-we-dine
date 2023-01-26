@@ -1,7 +1,7 @@
 from db import db
 
-def get_reviews_and_info(id):
-    sql = "SELECT RV.review, RE.name, RV.score, U.username FROM reviews RV, restaurants RE, users U WHERE RV.restaurant_id=RE.id AND RV.user_id=U.id AND RE.id=:id"
+def get_reviews(id):
+    sql = "SELECT RV.review, RV.score, RV.visited, RV.sent_at, U.username FROM reviews RV, restaurants RE, users U WHERE RV.user_id=U.id AND RV.restaurant_id=RE.id AND RE.id=:id"
     result = db.session.execute(sql, {"id":id})
     return result.fetchall()
 

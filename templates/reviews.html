@@ -10,15 +10,27 @@
 
 {% for review in reviews %}
     <hr>
-    Review by {{ review[3] }}<br>
+    Review by {{ review.username }}<br>
     <br>
-    Review: {{ review[0] }}<br>
+    Review: {{ review.review }}<br>
     <br>
-    Score: {{ review[2] }}
+    Score: {{ review.score }} <br>
+    <br>
+    Date of visit: {{ review.visited }}<br>
+    <br>
+    Review submitted at {{ review.sent_at }}
     <hr>
 {% endfor %}
 
 <p>
+    {% if session.user_id %}
+    You are logged in. <br>
+    <a href="/new-review">Write a review here</a><br>
+{% else %}
+    <a href="/login">Log in</a> to write a review<br>
+{% endif %}
+    
+    <br>
     Amount of reviews: {{ count }}
 <p>
 

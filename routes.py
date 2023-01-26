@@ -8,12 +8,6 @@ def index():
     list = reviews.get_restaurants()
     return render_template("index.html", count=len(list), restaurants=list)
 
-@app.route("/reviews/<int:id>")
-def show_reviews(id):
-    list = reviews.get_reviews_and_info(id)
-    about = reviews.get_restaurant_info(id)
-    return render_template("reviews.html", count=len(list), reviews=list, restaurant=about)
-
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -46,3 +40,14 @@ def register():
             return redirect("/")
         else:
             return render_template("error.html", message="Registeration unsuccessful")
+
+@app.route("/reviews/<int:id>")
+def show_reviews(id):
+    list = reviews.get_reviews(id)
+    about = reviews.get_restaurant_info(id)
+    return render_template("reviews.html", count=len(list), reviews=list, restaurant=about)
+
+@app.route("/new-review/<int:id>")
+def new_review(id, methods=["GET", "POST"]):
+    #in progress next
+    return render_template("new-review.html")
