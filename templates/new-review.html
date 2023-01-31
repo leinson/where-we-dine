@@ -1,0 +1,15 @@
+
+<form action="/new-review/{{ restaurant.id }}" method="POST">
+    <p>Write your review: <br>
+    <textarea name="review" rows="6" cols="50"></textarea></p>
+    <br>
+    <p>Score: <br>
+        <input type="number" name="score">
+    </p>
+    <p>Date of visit: <br>
+        <input type="text" name="visited">
+    </p>
+
+    <input type="submit" value="Submit review">
+</form>
+<a href="/">Back to front page</a>

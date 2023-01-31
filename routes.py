@@ -47,7 +47,19 @@ def show_reviews(id):
     about = reviews.get_restaurant_info(id)
     return render_template("reviews.html", count=len(list), reviews=list, restaurant=about)
 
-@app.route("/new-review/<int:id>")
-def new_review(id, methods=["GET", "POST"]):
-    #in progress next
-    return render_template("new-review.html")
+@app.route("/new-review/<int:id>", methods = ["GET", "POST"])
+def new_review(id):
+    if request.method == "GET":
+        restaurant_info = reviews.get_restaurant_info(id)
+        return render_template("new-review.html", restaurant = restaurant_info)
+    
+    if request.method == "POST":
+        review = request.form.get("review", "")
+        score = request.form.get("score", "").strip()
+        visited = request.form.get("visited", "").strip()
+        restaurant_id = id
+        username = users.username()
+        if reviews.submit_review(review, score, visited, restaurant_id, username):
+            return redirect("/reviews/" + str(restaurant_id))
+        else:
+            return render_template("error.html", message="Review submission failed")

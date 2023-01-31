@@ -25,7 +25,7 @@
 <p>
     {% if session.username %}
     You are logged in. <br>
-    <a href="/new-review">Write a review here</a><br>
+    <a href="/new-review/{{ restaurant.id }}">Write a review here</a><br>
 {% else %}
     <a href="/login">Log in</a> to write a review<br>
 {% endif %}
