@@ -1,13 +1,13 @@
 
 <form action="/new-review/{{ restaurant.id }}" method="POST">
     <p>Write your review: <br>
-    <textarea name="review" rows="6" cols="50" required></textarea></p>
+    <textarea name="review" rows="6" cols="50" maxlength="2000" required></textarea></p>
     <br>
     <p>Score: <br>
         <input type="number" name="score" min="1" max="10" required>
     </p>
     <p>Date of visit: <br>
-        <input type="date" name="visited" required>
+        <input type="date" name="visited" min="1900-01-01" required>
     </p>
 
     <input type="submit" value="Submit review">

@@ -39,7 +39,7 @@ def register():
         if users.register(username, password1):
             return redirect("/")
         else:
-            return render_template("error.html", message="Registeration unsuccessful")
+            return render_template("error.html", message="Registeration unsuccessful, invalid username or password")
 
 @app.route("/reviews/<int:id>")
 def show_reviews(id):
@@ -59,7 +59,8 @@ def new_review(id):
         visited = request.form.get("visited", "").strip()
         restaurant_id = id
         username = users.username()
-        if reviews.submit_review(review, score, visited, restaurant_id, username):
+        submit = reviews.submit_review(review, score, visited, restaurant_id, username)
+        if submit == True:
             return redirect("/reviews/" + str(restaurant_id))
         else:
-            return render_template("error.html", message="Review submission failed")
+            return render_template("error.html", message=submit)

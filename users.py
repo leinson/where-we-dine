@@ -19,15 +19,22 @@ def logout():
     del session["username"]
 
 def register(username, password):
-    hash_value = generate_password_hash(password)
-    isadmin = "false"
-    try:
-        sql = "INSERT INTO users (username,password,admin) VALUES (:username,:password,:admin)"
-        db.session.execute(sql, {"username":username, "password":hash_value, "admin":isadmin})
-        db.session.commit()
-    except:
-        return False
-    return login(username, password)
+    if check_registeration(username, password):
+        hash_value = generate_password_hash(password)
+        isadmin = "false"
+        try:
+            sql = "INSERT INTO users (username,password,admin) VALUES (:username,:password,:admin)"
+            db.session.execute(sql, {"username":username, "password":hash_value, "admin":isadmin})
+            db.session.commit()
+        except:
+            return False
+        return login(username, password)
+    return False
 
 def username():
     return session.get("username",0)
+
+def check_registeration(username, password):
+    if len(username) > 20 or len(username) < 3 or len(password) > 20 or len(password) < 6:
+        return False
+    return True
