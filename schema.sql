@@ -15,8 +15,8 @@ CREATE TABLE restaurants (
 
 CREATE TABLE reviews (
     id SERIAL PRIMARY KEY, 
-    restaurant_id INTEGER REFERENCES restaurants, 
-    user_id INTEGER REFERENCES users, 
+    restaurant_id INTEGER REFERENCES restaurants ON DELETE CASCADE, 
+    user_id INTEGER REFERENCES users ON DELETE CASCADE, 
     review TEXT,
     score INTEGER, 
     visited DATE, 
