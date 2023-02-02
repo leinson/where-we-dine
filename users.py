@@ -31,10 +31,23 @@ def register(username, password):
         return login(username, password)
     return False
 
-def username():
-    return session.get("username",0)
-
 def check_registeration(username, password):
     if len(username) > 20 or len(username) < 3 or len(password) > 20 or len(password) < 6:
         return False
     return True
+
+def username():
+    return session.get("username",0)
+
+def is_admin():
+    user = username()
+    if user == 0:
+        print("user 0")
+        return False
+    sql = "SELECT admin FROM users WHERE username=:username"
+    result = db.session.execute(sql, {"username":user})
+    admin = result.fetchone()
+    print("is admin?",admin)
+    if admin[0] == True:
+        return True
+    return False

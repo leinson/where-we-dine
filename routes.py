@@ -5,8 +5,9 @@ import users, reviews
 
 @app.route("/")
 def index():
+    is_admin = users.is_admin()
     list = reviews.get_restaurants()
-    return render_template("index.html", count=len(list), restaurants=list)
+    return render_template("index.html", count=len(list), restaurants=list, is_admin=is_admin)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -64,3 +65,7 @@ def new_review(id):
             return redirect("/reviews/" + str(restaurant_id))
         else:
             return render_template("error.html", message=submit)
+            
+@app.route("/new-restaurant")
+def new_restaurant():
+    return render_template("new-restaurant.html")
