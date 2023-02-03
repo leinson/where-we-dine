@@ -1,11 +1,11 @@
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY, 
     username TEXT UNIQUE, 
     password TEXT, 
     admin BOOLEAN
 );
 
-CREATE TABLE restaurants (
+CREATE TABLE IF NOT EXISTS restaurants (
     id SERIAL PRIMARY KEY, 
     name TEXT UNIQUE, 
     info TEXT, 
@@ -13,7 +13,7 @@ CREATE TABLE restaurants (
     city TEXT
 );
 
-CREATE TABLE reviews (
+CREATE TABLE IF NOT EXISTS reviews (
     id SERIAL PRIMARY KEY, 
     restaurant_id INTEGER REFERENCES restaurants ON DELETE CASCADE, 
     user_id INTEGER REFERENCES users ON DELETE CASCADE, 
@@ -21,4 +21,14 @@ CREATE TABLE reviews (
     score INTEGER, 
     visited DATE, 
     sent_at TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS cuisines (
+    id SERIAL PRIMARY KEY, 
+    cuisine TEXT
+);
+
+CREATE TABLE IF NOT EXISTS restaurant_cuisines (
+    restaurant_id INTEGER REFERENCES restaurants ON DELETE CASCADE,
+    cuisine_id INTEGER REFERENCES cuisines ON DELETE CASCADE
 );
