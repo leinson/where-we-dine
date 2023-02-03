@@ -69,15 +69,19 @@ def new_review(id):
 @app.route("/new-restaurant", methods = ["GET", "POST"])
 def new_restaurant():
     if request.method == "GET":
+        is_admin = users.is_admin()
         print("new restaurant GET method")
-        return render_template("new-restaurant.html")
+        if is_admin:
+            return render_template("new-restaurant.html", is_admin=is_admin)
+        else:
+            return render_template("error.html", message="You do not have rights to view this page")
     if request.method == "POST":
         name = request.form.get("name", "")
         info = request.form.get("info", "")
         web_link = request.form.get("web_link", "").strip()
         city = request.form.get("city", "")
         print("new restaurant POST values:", name, info, web_link, city)
-        submit = reviews.add_restaurant(name, info, web_link, city)
+        submit = reviews.add_restaurant(name, info, web_link, city, is_admin)
         if submit == True:
             return redirect("/")
         else:

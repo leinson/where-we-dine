@@ -34,7 +34,9 @@ def submit_review(review, score, visited, restaurant_id, username):
     else:
         return validated
 
-def add_restaurant(name, info, web_link, city):
+def add_restaurant(name, info, web_link, city, is_admin):
+    if is_admin is False:
+        return "You do not have rights to view this page"
     validate = validate_restaurant(name, info, city)
     if len(web_link) < 6:
         web_link = ""
