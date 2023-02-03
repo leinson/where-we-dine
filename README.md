@@ -78,14 +78,19 @@
 - A user can add pictures to their review
 
  
-## How to install (in progress)
+## How to install
+Flask deployment not yet in use. You can test the application locally on your computer:
 
 - Clone repository to your computer
+- Add file: .env and add to it: 
+    - DATABASE_URL=postgresql+psycopg2:///yourusername  
+    - SECRET_KEY=a-secret-key
 - Install virtual enviroment into the project folder: python3 -m venv venv
 - Go to virtual environment: $ source venv/bin/activate
 - Install requirements: pip install -r requirements.txt
-- Add file: .env , add to it:DATABASE_URL=postgresql+psycopg2:///yourusername . Also add a SECRET_KEY ?
-- change to your username in db.py
+
+- change to your username in db.py if needed
 - Install postgresql (https://hy-tsoha.github.io/materiaali/osa-2/#tietokannan-k%C3%A4ytt%C3%A4minen)
-- Open start-pg.sh in another terminal - keep open
+- add database: psql < schema.sql
+- Open :start-pg.sh , in another terminal - keep open
 - Run app: flask run
