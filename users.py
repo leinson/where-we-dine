@@ -39,6 +39,11 @@ def check_registeration(username, password):
 def username():
     return session.get("username",0)
 
+def get_user_id(username):
+    sql = "SELECT id FROM users WHERE username=:username"
+    result = db.session.execute(sql, {"username":username})
+    return result.fetchone()
+
 def is_admin():
     user = username()
     if user == 0:

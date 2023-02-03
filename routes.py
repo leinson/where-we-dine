@@ -1,14 +1,13 @@
 from flask import redirect, render_template, request
 from app import app
-import users, reviews
+import users, reviews, restaurants
 
 
 @app.route("/")
 def index():
     is_admin = users.is_admin()
-    list = reviews.get_restaurants()
+    list = restaurants.get_restaurants()
     return render_template("index.html", count=len(list), restaurants=list, is_admin=is_admin)
-
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -45,13 +44,13 @@ def register():
 @app.route("/reviews/<int:id>")
 def show_reviews(id):
     list = reviews.get_reviews(id)
-    about = reviews.get_restaurant_info(id)
+    about = restaurants.get_restaurant_info(id)
     return render_template("reviews.html", count=len(list), reviews=list, restaurant=about)
 
 @app.route("/new-review/<int:id>", methods = ["GET", "POST"])
 def new_review(id):
     if request.method == "GET":
-        restaurant_info = reviews.get_restaurant_info(id)
+        restaurant_info = restaurants.get_restaurant_info(id)
         return render_template("new-review.html", restaurant = restaurant_info)
     
     if request.method == "POST":
@@ -81,7 +80,7 @@ def new_restaurant():
         web_link = request.form.get("web_link", "").strip()
         city = request.form.get("city", "")
         print("new restaurant POST values:", name, info, web_link, city)
-        submit = reviews.add_restaurant(name, info, web_link, city, is_admin)
+        submit = restaurants.add_restaurant(name, info, web_link, city, is_admin)
         if submit == True:
             return redirect("/")
         else:

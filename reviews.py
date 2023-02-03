@@ -1,23 +1,14 @@
 from db import db
 import datetime
+import users
 
 def get_reviews(id):
     sql = "SELECT RV.review, RV.score, RV.visited, RV.sent_at, U.username FROM reviews RV, restaurants RE, users U WHERE RV.user_id=U.id AND RV.restaurant_id=RE.id AND RE.id=:id"
     result = db.session.execute(sql, {"id":id})
     return result.fetchall()
 
-def get_restaurant_info(id):
-    sql = "SELECT id, name, info, web_link, city FROM restaurants WHERE id=:id"
-    result = db.session.execute(sql, {"id":id})
-    return result.fetchone()
-
-def get_restaurants():
-    sql = "SELECT id, name FROM restaurants"
-    result = db.session.execute(sql)
-    return result.fetchall()
-
 def submit_review(review, score, visited, restaurant_id, username):
-    user_id = get_user_id(username)
+    user_id = users.get_user_id(username)
     user_id = user_id[0]
     print(user_id, review, score, visited, restaurant_id)
     validated = validate_new_review(review, score, visited, user_id)
@@ -34,28 +25,6 @@ def submit_review(review, score, visited, restaurant_id, username):
     else:
         return validated
 
-def add_restaurant(name, info, web_link, city, is_admin):
-    if is_admin is False:
-        return "You do not have rights to view this page"
-    validate = validate_restaurant(name, info, city)
-    if len(web_link) < 6:
-        web_link = ""
-    if validate == True:
-        sql="INSERT INTO restaurants (name, info, web_link, city) VALUES (:name, :info, :web_link, :city)"
-        db.session.execute(sql, {
-                "name":name,
-                "info":info,
-                "web_link":web_link,
-                "city":city})
-        db.session.commit()
-        return True
-    else:
-        return validate
-
-def get_user_id(username):
-    sql = "SELECT id FROM users WHERE username=:username"
-    result = db.session.execute(sql, {"username":username})
-    return result.fetchone()
 
 def validate_new_review(review, score, visited, user_id):
     message = True
@@ -71,16 +40,6 @@ def validate_new_review(review, score, visited, user_id):
         message = "Incorrect date format, should be YYYY-MM-DD"
     return message
 
-def validate_restaurant(name, info, city):
-    print("validate restaurant")
-    message = True
-    if len(name) < 1 or len(name) > 100:
-        message = "Incorrect input in field: name"
-    if len(info) < 1 or len(info) > 2000:
-        message = "Incorrect input in field: info"
-    if len(city) < 1 or len(city) > 100:
-        message = "Incorrect input in field: city"
-    return message
 
 def validate_date(visited):
     try:
