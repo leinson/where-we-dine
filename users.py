@@ -42,7 +42,7 @@ def username():
 def is_admin():
     user = username()
     if user == 0:
-        print("user 0")
+        print("user 0 in is_admin, not logged in")
         return False
     sql = "SELECT admin FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":user})

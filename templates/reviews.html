@@ -5,7 +5,9 @@
     <br>
     {{ restaurant.city }}<br>
     <br>
-    <a href="{{ restaurant.web_link }}">Go to restaurants own web page</a>
+    {% if restaurant.web_link != '' %}
+        <a href="{{ restaurant.web_link }}">Go to restaurants own web page</a>
+    {% endif %}
 </p>
 
 {% for review in reviews %}
@@ -21,17 +23,14 @@
     Review submitted at {{ review.sent_at }}
     <hr>
 {% endfor %}
-
-<p>
-    {% if session.username %}
-    You are logged in. <br>
+<p>Amount of reviews: {{ count }}</p> 
+<br>
+{% if session.username %}
     <a href="/new-review/{{ restaurant.id }}">Write a review here</a><br>
+    <p>You are logged in as {{ session.username }}.</p>
 {% else %}
     <a href="/login">Log in</a> to write a review<br>
 {% endif %}
-    
-    <br>
-    Amount of reviews: {{ count }}
-<p>
+<br>
 
 <a href="/">Back to front page</a>

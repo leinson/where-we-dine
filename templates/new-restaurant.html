@@ -1,3 +1,17 @@
-<p>Add restaurant in progress</p><br>
-<br>
+<h1>Add a restaurant</h1><br>
+<form action="/new-restaurant" method="POST">
+    <p>Name of restaurant: <br>
+        <input type="text" name="name" min="1" max="30" required>
+    </p>
+    <p> Restaurant info: <br>
+        <textarea name="info" rows="6" cols="50" maxlength="2000" required></textarea>
+    </p>
+    <p>Restaurant's web address: <br>
+        <input type="text" name="web_link">
+    </p>
+    <p>City: <br>
+        <input type="text" name="city">
+    </p>
+    <input type="submit" value="Submit review">
+</form>
 <a href="/">Back to front page</a>

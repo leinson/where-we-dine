@@ -65,7 +65,20 @@ def new_review(id):
             return redirect("/reviews/" + str(restaurant_id))
         else:
             return render_template("error.html", message=submit)
-            
-@app.route("/new-restaurant")
+
+@app.route("/new-restaurant", methods = ["GET", "POST"])
 def new_restaurant():
-    return render_template("new-restaurant.html")
+    if request.method == "GET":
+        print("new restaurant GET method")
+        return render_template("new-restaurant.html")
+    if request.method == "POST":
+        name = request.form.get("name", "")
+        info = request.form.get("info", "")
+        web_link = request.form.get("web_link", "").strip()
+        city = request.form.get("city", "")
+        print("new restaurant POST values:", name, info, web_link, city)
+        submit = reviews.add_restaurant(name, info, web_link, city)
+        if submit == True:
+            return redirect("/")
+        else:
+            return render_template("error.html", message=submit)
