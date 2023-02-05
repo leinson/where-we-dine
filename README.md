@@ -46,7 +46,8 @@ Flask deployment not yet in use. You can test the application locally on your co
 - change to your username in db.py if needed
 - (Install postgresql https://hy-tsoha.github.io/materiaali/osa-2/#tietokannan-k%C3%A4ytt%C3%A4minen)
 - add database: psql < schema.sql
-- add restaurants and an admin user for testing: psql < queries.sql
+- add an admin user and a couple of restaurants for testing: psql < queries.sql
+    - if this doesn't work, you can manually in psql change your user to an admin by changing the admin column to 'true'
 - Open :start-pg.sh , in another terminal - keep open
 - Run app: flask run
 
@@ -74,7 +75,7 @@ Flask deployment not yet in use. You can test the application locally on your co
 
 ### Organizing and search features 
 
-- An admin can create tags that belong to the categories cuisine and price 
+- An admin can create tags that belong to the categories cuisine and price (in progress)
 
 - A user can search for a restaurant based on a tag or restaurant name
 
