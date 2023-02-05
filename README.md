@@ -27,13 +27,15 @@
 
     - City 
  
-- Create an account, normal user or admin 
+- Create an account, normal user (or admin)
+    - Admin rights manually added to database
 
 - Log in and out 
 
+- Restrictments in html and python to block invalid inputs
  
 ## How to install
-Flask deployment not yet in use. You can test the application locally on your computer:
+Fly.io deployment not yet in use. You can test the application locally on your computer:
 
 - Clone repository to your computer
 - Add file: .env and add to it: 
@@ -50,6 +52,9 @@ Flask deployment not yet in use. You can test the application locally on your co
     - if this doesn't work, you can manually in psql change your user to an admin by changing the admin column to 'true'
 - Open :start-pg.sh , in another terminal - keep open
 - Run app: flask run
+
+
+- Will try to get fly.io deployment to Välipalautus 3.
 
 ## To Do
 
