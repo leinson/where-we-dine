@@ -1,7 +1,7 @@
 # where-we-dine
 
 - A restaurant review app
-- Created for the Database application study project at University of Helsinki
+- Created for the Database application study project (Tietokantasovellus harjoitustyö) at University of Helsinki
 
 ### Välipalautus 2 : 
 
