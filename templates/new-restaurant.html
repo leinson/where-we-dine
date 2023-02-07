@@ -13,7 +13,13 @@
         <p>City: <br>
             <input type="text" name="city" required>
         </p>
-        <input type="submit" value="Submit review">
+        <p>Choose cuisines:</p>
+        {% for cuisine in cuisines %}
+        <input type="checkbox" id="cuisine" name="cuisine" value={{ cuisine.cuisine }}>
+        <label for="cuisine"> {{ cuisine.cuisine }}</label><br>
+        {% endfor %}
+        <br>
+        <input type="submit" value="Submit restaurant">
     </form>
 {% else %}
     <p>You do not have rights to view this page</p>

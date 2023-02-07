@@ -70,18 +70,24 @@ def new_restaurant():
     if request.method == "GET":
         is_admin = users.is_admin()
         print("new restaurant GET method")
+        list = restaurants.get_cuisines()
         if is_admin:
-            return render_template("new-restaurant.html", is_admin=is_admin)
+            return render_template("new-restaurant.html", is_admin=is_admin, cuisines=list)
         else:
             return render_template("error.html", message="You do not have rights to view this page")
     if request.method == "POST":
-        name = request.form.get("name", "")
-        info = request.form.get("info", "")
-        web_link = request.form.get("web_link", "").strip()
-        city = request.form.get("city", "")
-        print("new restaurant POST values:", name, info, web_link, city)
-        submit = restaurants.add_restaurant(name, info, web_link, city, is_admin)
-        if submit == True:
-            return redirect("/")
+        is_admin = users.is_admin()
+        if is_admin:
+            name = request.form.get("name", "")
+            info = request.form.get("info", "")
+            web_link = request.form.get("web_link", "").strip()
+            city = request.form.get("city", "")
+            cuisines = request.form.getlist("cuisine")
+            print("new restaurant - POST values:", name, info, web_link, city, is_admin, cuisines)
+            submit = restaurants.add_restaurant(name, info, web_link, city, is_admin)
+            if submit == True:
+                return redirect("/")
+            else:
+                return render_template("error.html", message=submit)
         else:
-            return render_template("error.html", message=submit)
+            return render_template("error.html", message="You do not have rights to view this page")

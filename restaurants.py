@@ -23,8 +23,8 @@ def add_restaurant(name, info, web_link, city, is_admin): #cuisines
                 "info":info,
                 "web_link":web_link,
                 "city":city})
-        db.session.commit()
         #add_restaurant_cuisines(name, cuisines)
+        db.session.commit()
         return True
     else:
         return validate
@@ -55,5 +55,9 @@ def add_restaurant_cuisines(name, cuisines):
         db.session.execute(sql, {
                 "restaurant_id":restaurant_id,
                 "cuisine_id":cuisine_id})
-        db.session.commit()
     return True
+
+def get_cuisines():
+    sql = "SELECT id, cuisine FROM cuisines"
+    result = db.session.execute(sql)
+    return result.fetchall()
