@@ -12,19 +12,14 @@
 - A user can add a review to an existing restaurant 
 
     - Write a review 
-
     - Add date of visit 
-
     - Choose a score 
 
 - An admin can add a new restaurant to the page 
 
     - Add restaurants name 
-
     - Write information about the restaurant 
-
     - Link to the restaurant’s webpage 
-
     - City 
  
 - Create an account, normal user (or admin)
@@ -59,20 +54,17 @@ Fly.io deployment not yet in use. You can test the application locally on your c
 ## To Do
 
 ### Features
-- User can:
-    - Add available tags 
-    - Add cuisine and price tags 
 - Admin can:
     - Can edit all info about a restaurant afterwards
+    - Add types of cuisines to a restaurant  (in progress)
+    - Add price range to a restaurant
 
 ### Page and account management
 
 - User page, where the user can 
 
     - See their own reviews 
-
     - Remove own reviews 
-
     - Remove own account 
 
 - Admin right to remove anyone’s review, account, or any restaurant 
@@ -82,7 +74,7 @@ Fly.io deployment not yet in use. You can test the application locally on your c
 
 - An admin can create tags that belong to the categories cuisine and price (in progress)
 
-- A user can search for a restaurant based on a tag or restaurant name
+- A user can search for a restaurant based on cuisine, price or restaurant name
 
 - A user can organize the list of restaurants based on the review scores 
  
