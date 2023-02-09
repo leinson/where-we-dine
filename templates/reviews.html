@@ -10,6 +10,12 @@
     {% endif %}
 </p>
 
+Cuisine: - 
+{% for cuisine in cuisines %}
+    {{ cuisine.cuisine }} - 
+{% endfor %}
+<br>
+
 {% for review in reviews %}
     <hr>
     Review by {{ review.username }}<br>

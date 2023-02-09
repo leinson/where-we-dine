@@ -5,12 +5,18 @@ def get_restaurant_info(id):
     result = db.session.execute(sql, {"id":id})
     return result.fetchone()
 
+def get_restaurants_cuisines(id):
+    restaurant_id = id
+    sql = "SELECT C.cuisine FROM cuisines C, restaurant_cuisines RC WHERE RC.cuisine_id=C.id AND RC.restaurant_id=:restaurant_id"
+    result = db.session.execute(sql, {"restaurant_id":restaurant_id})
+    return result.fetchall()
+
 def get_restaurants():
     sql = "SELECT id, name FROM restaurants"
     result = db.session.execute(sql)
     return result.fetchall()
 
-def add_restaurant(name, info, web_link, city, is_admin): #cuisines
+def add_restaurant(name, info, web_link, city, is_admin, cuisines):
     if is_admin is False:
         return "You do not have rights to view this page"
     validate = validate_restaurant(name, info, city)
@@ -23,7 +29,7 @@ def add_restaurant(name, info, web_link, city, is_admin): #cuisines
                 "info":info,
                 "web_link":web_link,
                 "city":city})
-        #add_restaurant_cuisines(name, cuisines)
+        add_restaurant_cuisines(name, cuisines)
         db.session.commit()
         return True
     else:
@@ -45,11 +51,14 @@ def add_restaurant_cuisines(name, cuisines):
     sql="SELECT id FROM restaurants WHERE name=:name"
     result = db.session.execute(sql, {"name":name})
     restaurant_id=result.fetchone()
+    restaurant_id = restaurant_id[0]
     cuisine_ids=[]
     for cuisine in cuisines:
-        "SELECT id FROM cuisines WHERE cuisine=:cuisine"
+        sql = "SELECT id FROM cuisines WHERE cuisine=:cuisine"
         result = db.session.execute(sql, {"cuisine":cuisine})
-        cuisine_ids.append(result.fetchone())
+        result = result.fetchone()
+        result = result[0]
+        cuisine_ids.append(result)
     for cuisine_id in cuisine_ids:
         sql="INSERT INTO restaurant_cuisines (restaurant_id, cuisine_id) VALUES (:restaurant_id, :cuisine_id)"
         db.session.execute(sql, {
@@ -61,3 +70,4 @@ def get_cuisines():
     sql = "SELECT id, cuisine FROM cuisines"
     result = db.session.execute(sql)
     return result.fetchall()
+

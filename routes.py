@@ -45,7 +45,8 @@ def register():
 def show_reviews(id):
     list = reviews.get_reviews(id)
     about = restaurants.get_restaurant_info(id)
-    return render_template("reviews.html", count=len(list), reviews=list, restaurant=about)
+    cuisines = restaurants.get_restaurants_cuisines(id)
+    return render_template("reviews.html", count=len(list), reviews=list, restaurant=about, cuisines=cuisines)
 
 @app.route("/new-review/<int:id>", methods = ["GET", "POST"])
 def new_review(id):
@@ -84,7 +85,7 @@ def new_restaurant():
             city = request.form.get("city", "")
             cuisines = request.form.getlist("cuisine")
             print("new restaurant - POST values:", name, info, web_link, city, is_admin, cuisines)
-            submit = restaurants.add_restaurant(name, info, web_link, city, is_admin)
+            submit = restaurants.add_restaurant(name, info, web_link, city, is_admin, cuisines)
             if submit == True:
                 return redirect("/")
             else:
