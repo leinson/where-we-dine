@@ -3,6 +3,16 @@
 - A restaurant review app
 - Created for the Database application study project (Tietokantasovellus harjoitustyö) at University of Helsinki
 
+
+### Välipalautus 3 :
+- Admin can add types of cuisines to a new restaurant, aka can create cuisine tags
+
+To do:
+
+- add price range to a restaurant
+- remove option
+- fly.io
+
 ### Välipalautus 2 : 
 
 - A view, which shows all added restaurants 
@@ -56,13 +66,11 @@ Fly.io deployment not yet in use. You can test the application locally on your c
 ### Features
 - Admin can:
     - Can edit all info about a restaurant afterwards
-    - Add types of cuisines to a restaurant  (in progress)
     - Add price range to a restaurant
 
 ### Page and account management
 
 - User page, where the user can 
-
     - See their own reviews 
     - Remove own reviews 
     - Remove own account 
@@ -71,8 +79,6 @@ Fly.io deployment not yet in use. You can test the application locally on your c
  
 
 ### Organizing and search features 
-
-- An admin can create tags that belong to the categories cuisine and price (in progress)
 
 - A user can search for a restaurant based on cuisine, price or restaurant name
 
