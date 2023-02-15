@@ -1,8 +1,16 @@
 <h1>where we dine</h1>
-
-<p>Restaurant review app - Database application study project at University of Helsinki</p>
+{% if session.username %}
+    <p>You are logged in as {{ session.username }}.</p>  
+    <a href="/logout">Log out</a>
+{% else %}
+    <a href="/login">Log in</a>
+{% endif %}
 <h2>the restaurants</h2>
-
+{% if session.username %}
+    {% if is_admin == True %}
+        <a href="/new-restaurant">Add a new restaurant</a><br>
+    {% endif %}
+{% endif %}
 {% for restaurant in restaurants %}
     <hr>
     <b>{{ restaurant.name }}</b><br>
@@ -10,15 +18,5 @@
     <a href="/reviews/{{ restaurant.id }}">View the reviews</a>
     <hr>
 {% endfor %}
-
 <p>Amount of restaurants: {{ count }}</p><br>
-
-{% if session.username %}
-    {% if is_admin == True %}
-        <a href="/new-restaurant">Add a restaurant</a><br>
-    {% endif %}
-    <p>You are logged in as {{ session.username }}.</p>  
-    <a href="/logout">Log out</a>
-{% else %}
-    <a href="/login">Log in</a>
-{% endif %}
+<p>Restaurant review app - Database application study project at University of Helsinki</p>

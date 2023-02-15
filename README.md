@@ -10,7 +10,7 @@
 
 To do:
 
-- remove option
+- user page & remove options
 - fly.io
 
 ### Välipalautus 2 : 
