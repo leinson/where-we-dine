@@ -7,6 +7,7 @@
 ### Välipalautus 3 :
 - Admin can add types of cuisines to a new restaurant, aka can create cuisine tags
 - Add price range to a restaurant
+
 To do:
 
 - remove option
