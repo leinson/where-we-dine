@@ -13,6 +13,14 @@
         <p>City: <br>
             <input type="text" name="city" required>
         </p>
+        <p>Price: <br>
+            <input type="radio" id="price" name="price" value="€" required>
+            <label for="price">€</label>
+            <input type="radio" id="price" name="price" value="€€" required>
+            <label for="price">€€</label>
+            <input type="radio" id="price" name="price" value="€€€" required>
+            <label for="price">€€€</label>
+        </p>
         <p>Choose cuisines:</p>
         {% for cuisine in cuisines %}
         <input type="checkbox" id="cuisine" name="cuisine" value={{ cuisine.cuisine }}>

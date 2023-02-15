@@ -10,7 +10,8 @@ CREATE TABLE IF NOT EXISTS restaurants (
     name TEXT UNIQUE, 
     info TEXT, 
     web_link TEXT, 
-    city TEXT
+    city TEXT,
+    price TEXT
 );
 
 CREATE TABLE IF NOT EXISTS reviews (

@@ -83,9 +83,10 @@ def new_restaurant():
             info = request.form.get("info", "")
             web_link = request.form.get("web_link", "").strip()
             city = request.form.get("city", "")
+            price = request.form.get("price", "")
             cuisines = request.form.getlist("cuisine")
-            print("new restaurant - POST values:", name, info, web_link, city, is_admin, cuisines)
-            submit = restaurants.add_restaurant(name, info, web_link, city, is_admin, cuisines)
+            print("new restaurant - POST values:", name, info, web_link, city, price, is_admin, cuisines)
+            submit = restaurants.add_restaurant(name, info, web_link, city, price, is_admin, cuisines)
             if submit == True:
                 return redirect("/")
             else:
