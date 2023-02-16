@@ -8,11 +8,12 @@
 - Admin can add types of cuisines to a new restaurant, aka can create cuisine tags
 - Add price range to a restaurant
 - Separate user page that displays the users written reviews
+- fly.io
 
 To do:
-
+- admin can add new cuisine types in app
 - Delete own review and own account
-- fly.io
+
 
 ### Välipalautus 2 : 
 
@@ -40,8 +41,11 @@ To do:
 
 - Restrictments in html and python to block invalid inputs
  
-## How to install
-Fly.io deployment not yet in use. You can test the application locally on your computer:
+## How to use
+Fly.io link: https://where-we-dine.fly.dev/
+- For testing admin features: username: admintest, password: test123 
+
+If fly.io for some reason does not work, you can test the application locally on your computer:
 
 - Clone repository to your computer
 - Add file: .env and add to it: 
@@ -59,8 +63,6 @@ Fly.io deployment not yet in use. You can test the application locally on your c
 - Open :start-pg.sh , in another terminal - keep open
 - Run app: flask run
 
-
-- Will try to get fly.io deployment to Välipalautus 3.
 
 ## To Do
 
