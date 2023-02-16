@@ -53,8 +53,9 @@ def user(id):
         allow = True
     if not allow:
         return render_template("error.html", message="You do not have rights to view this page")
-    #list = users.get_users_reviews(id)
-    return render_template("user.html", is_admin=is_admin) #count=len(list), reviews=list, 
+    list = users.get_users_reviews(id)
+    print(list)
+    return render_template("user.html", is_admin=is_admin, count=len(list), reviews=list)
 
 @app.route("/reviews/<int:id>")
 def show_reviews(id):

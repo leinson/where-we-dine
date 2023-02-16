@@ -3,6 +3,20 @@
 <p>You are logged in as {{ session.username }}.</p><br>  
 <p>Your reviews:<br>
 </p>
+{% for review in reviews %}
+    <hr>
+    Restaurant {{ review.name }}<br>
+    <br>
+    Review: {{ review.review }}<br>
+    <br>
+    Score: {{ review.score }}/10 <br>
+    <br>
+    Date of visit: {{ review.visited }}<br>
+    <br>
+    Review submitted at {{ review.sent_at }}
+    <hr>
+{% endfor %}
+<p>Amount of reviews written: {{ count }}</p> 
 <br>
 <p>Delete account</p>
 <a href="/">Back to front page</a>
