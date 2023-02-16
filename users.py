@@ -40,6 +40,8 @@ def username():
     return session.get("username",0)
 
 def get_user_id(username):
+    if username == 0:
+        return False
     sql = "SELECT id FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":username})
     return result.fetchone()
@@ -56,3 +58,15 @@ def is_admin():
     if admin[0] == True:
         return True
     return False
+
+def is_logged_in():
+    is_logged = username()
+    print("is_logged: ", is_logged)
+    if is_logged != 0:
+        is_logged = get_user_id(is_logged)
+        is_logged = is_logged[0]
+        print("user_id: ", is_logged)
+    return is_logged
+
+def get_users_reviews(id):
+    pass

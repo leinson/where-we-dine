@@ -1,6 +1,6 @@
 <h1>where we dine</h1>
 {% if session.username %}
-    <p>You are logged in as {{ session.username }}.</p>  
+    <p>You are logged in as {{ session.username }}. <a href="/user/{{ user_id }}">Go to your page</a></p><br>  
     <a href="/logout">Log out</a>
 {% else %}
     <a href="/login">Log in</a>

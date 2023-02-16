@@ -5,9 +5,10 @@ import users, reviews, restaurants
 
 @app.route("/")
 def index():
+    user_id = users.is_logged_in()
     is_admin = users.is_admin()
     list = restaurants.get_restaurants()
-    return render_template("index.html", count=len(list), restaurants=list, is_admin=is_admin)
+    return render_template("index.html", count=len(list), restaurants=list, is_admin=is_admin, user_id=user_id)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -40,6 +41,20 @@ def register():
             return redirect("/")
         else:
             return render_template("error.html", message="Registeration unsuccessful, invalid username or password")
+
+@app.route("/user/<int:id>")
+def user(id):
+    print("user page id: ", id)
+    allow = False
+    is_admin = users.is_admin()
+    if is_admin:
+        allow = True
+    elif users.is_logged_in() == id:
+        allow = True
+    if not allow:
+        return render_template("error.html", message="You do not have rights to view this page")
+    #list = users.get_users_reviews(id)
+    return render_template("user.html", is_admin=is_admin) #count=len(list), reviews=list, 
 
 @app.route("/reviews/<int:id>")
 def show_reviews(id):
