@@ -7,10 +7,11 @@
 ### Välipalautus 3 :
 - Admin can add types of cuisines to a new restaurant, aka can create cuisine tags
 - Add price range to a restaurant
+- Separate user page that displays the users written reviews
 
 To do:
 
-- user page & remove options
+- Delete own review and own account
 - fly.io
 
 ### Välipalautus 2 : 
@@ -66,14 +67,11 @@ Fly.io deployment not yet in use. You can test the application locally on your c
 ### Features
 - Admin can:
     - Can edit all info about a restaurant afterwards
-    - Add price range to a restaurant
 
 ### Page and account management
 
-- User page, where the user can 
-    - See their own reviews 
-    - Remove own reviews 
-    - Remove own account 
+- Remove own reviews 
+- Remove own account 
 
 - Admin right to remove anyone’s review, account, or any restaurant 
  
