@@ -1,0 +1,19 @@
+<h2>cuisines</h2>
+<p>Add cuisine:<br>
+    <form action="/cuisines/add" method="POST">
+        <input type="text" name="cuisine" minlength="1" maxlength="30" required>
+        <input type="submit" value="Add cuisine">
+    </form></p>
+<p>Existing cuisines:</p>
+{% for cuisine in cuisines %}
+    {{ cuisine.cuisine }}
+    <form action="/cuisines/delete/{{ cuisine.id }}" method=POST>
+        <input type="submit" value="Delete" name="delete">
+    </form>
+{% endfor %}
+<br>
+
+
+<a href="/">Back to front page</a>
+
+

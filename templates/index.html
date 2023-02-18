@@ -8,7 +8,8 @@
 <h2>the restaurants</h2>
 {% if session.username %}
     {% if is_admin == True %}
-        <a href="/new-restaurant">Add a new restaurant</a><br>
+        <a href="/new-restaurant">Add restaurants</a><br>
+        <a href="/cuisines">Add cuisines</a><br>
     {% endif %}
 {% endif %}
 {% for restaurant in restaurants %}

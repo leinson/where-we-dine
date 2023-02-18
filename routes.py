@@ -126,3 +126,30 @@ def delete_user(id):
         users.delete_user(id)
         return redirect("/")
     return render_template("error.html", message= "Could not delete account")
+
+@app.route("/cuisines", methods = ["GET"])
+def cuisines():
+    is_admin = users.is_admin()
+    print("cuisines GET method")
+    list = restaurants.get_cuisines()
+    if is_admin:
+        return render_template("cuisines.html", is_admin=is_admin, cuisines=list)
+    else:
+        return render_template("error.html", message="You do not have rights to view this page")
+    
+@app.route("/cuisines/add", methods = ["POST"])
+def add_cuisines():
+    cuisine = request.form.get("cuisine", "")
+    submit = restaurants.add_new_cuisine(cuisine)
+    if submit == True:
+        return redirect("/cuisines")
+    else:
+        return render_template("error.html", message="Could not add cuisine")
+
+    
+@app.route("/cuisines/delete/<int:id>", methods = ["POST"])
+def delete_cuisine(id):
+    if restaurants.delete_cuisine(id):
+        return redirect("/cuisines")
+    return render_template("error.html", message= "Could not delete cuisine")
+

@@ -5,15 +5,14 @@
 
 
 ### Välipalautus 3 :
-- Admin can add types of cuisines to a new restaurant, aka can create cuisine tags
-- Add price range to a restaurant
+
+- Admin can in the app add new cuisine types and delete them
+- Admin can add types of cuisines to a new restaurant
+- Admin can add the price range to a new restaurant
 - Separate user page that displays the users written reviews
 - Delete own reviews from user page
 - Delete own account
 - fly.io deployment
-
-To do:
-- admin can add new cuisine types in app
 
 
 ### Välipalautus 2 : 
@@ -44,7 +43,8 @@ To do:
  
 ## How to use
 Fly.io link: https://where-we-dine.fly.dev/
-- For testing admin features: username: admintest, password: test123 
+- For testing admin features: 
+    - username: admintest, password: test123 
 
 If fly.io for some reason does not work, you can test the application locally on your computer:
 

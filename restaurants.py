@@ -74,3 +74,16 @@ def get_cuisines():
     result = db.session.execute(sql)
     return result.fetchall()
 
+def add_new_cuisine(cuisine):
+    if len(cuisine) > 2 and len(cuisine) < 25:
+        sql = "INSERT INTO cuisines (cuisine) VALUES (:cuisine)"
+        db.session.execute(sql, {"cuisine":cuisine})
+        db.session.commit()
+        return True
+    return False
+
+def delete_cuisine(id):
+    sql = "DELETE FROM cuisines WHERE id=:id"
+    db.session.execute(sql, {"id":id})
+    db.session.commit()
+    return True
