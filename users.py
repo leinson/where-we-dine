@@ -72,3 +72,9 @@ def get_users_reviews(id):
     sql = "SELECT RV.id, RV.review, RV.score, RV.visited, RV.sent_at, RE.name FROM reviews RV, restaurants RE, users U WHERE RV.restaurant_id=RE.id AND RV.user_id=U.id AND U.id=:id"
     result = db.session.execute(sql, {"id":id})
     return result.fetchall()
+
+def delete_user(id):
+    logout()
+    sql = "DELETE FROM users WHERE id=:id"
+    db.session.execute(sql, {"id":id})
+    db.session.commit()

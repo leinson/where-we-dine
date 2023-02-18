@@ -55,7 +55,7 @@ def user(id):
         return render_template("error.html", message="You do not have rights to view this page")
     list = users.get_users_reviews(id)
     print(list)
-    return render_template("user.html", is_admin=is_admin, count=len(list), reviews=list)
+    return render_template("user.html", is_admin=is_admin, user_id=id, count=len(list), reviews=list)
 
 @app.route("/reviews/<int:id>")
 def show_reviews(id):
@@ -117,4 +117,12 @@ def delete_review(id):
         reviews.delete_review(id)
         user_id = users.is_logged_in()
         return redirect("/user/"+ str(user_id))
-    return render_template("error.html", message= "could not delete review")
+    return render_template("error.html", message= "Could not delete review")
+
+
+@app.route("/delete_user/<int:id>", methods = ["POST"])
+def delete_user(id):
+    if request.method == "POST":
+        users.delete_user(id)
+        return redirect("/")
+    return render_template("error.html", message= "Could not delete account")

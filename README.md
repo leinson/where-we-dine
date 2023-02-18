@@ -9,11 +9,11 @@
 - Add price range to a restaurant
 - Separate user page that displays the users written reviews
 - Delete own reviews from user page
+- Delete own account
 - fly.io deployment
 
 To do:
 - admin can add new cuisine types in app
-- delete own account
 
 
 ### Välipalautus 2 : 
@@ -73,10 +73,7 @@ If fly.io for some reason does not work, you can test the application locally on
 
 ### Page and account management
 
-- Remove own reviews 
-- Remove own account 
-
-- Admin right to remove anyone’s review, account, or any restaurant 
+- Admin right to remove anyone’s account and any restaurant 
  
 
 ### Organizing and search features 
