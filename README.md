@@ -8,7 +8,7 @@
 - Fly.io link: https://where-we-dine.fly.dev/
 - For testing admin features: 
     - username: admintest, password: test123 
-    - please do not delete the admin account, so both ohjaaja&vertaisarvioija can test the admin role. :)
+  
 - Refresh the page if you get "Internal server error" when you open the link
 - If fly.io for some other reason does not work, you can test the application locally on your computer. Instructions are at the bottom of the README.
 
@@ -19,7 +19,7 @@
 - Admin can add the price range to a new restaurant
 - Separate user page that displays the users written reviews
 - Delete own reviews from user page
-- Delete own account
+- Delete own account (except admins)
 - fly.io deployment
 
 
