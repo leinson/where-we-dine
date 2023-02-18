@@ -2,9 +2,16 @@ from os import getenv
 from flask_sqlalchemy import SQLAlchemy
 from app import app
 
-app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL").replace("ql+psycopg2://", "ql://", 1)
+uri = getenv("DATABASE_URL").replace("ql+psycopg2://", "ql://", 1)
+if uri.startswith("postgres://"):
+    uri = uri.replace("postgres://", "postgresql://", 1)
+
+app.config["SQLALCHEMY_DATABASE_URI"] = uri
+
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
+
+#vanha: app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL").replace("ql+psycopg2://", "ql://", 1)
 
 # Examples of queries done now straight to the database
 # INSERT INTO restaurants (name, info, web_link, city) VALUES ('Goose Pastabar', 'Korttelikuppila, jossa tarjotaan itsetehtyä pastaa.', 'https://www.goosepastabar.com/', 'Helsinki')
