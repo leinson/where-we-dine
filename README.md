@@ -8,11 +8,12 @@
 - Admin can add types of cuisines to a new restaurant, aka can create cuisine tags
 - Add price range to a restaurant
 - Separate user page that displays the users written reviews
-- fly.io
+- Delete own reviews from user page
+- fly.io deployment
 
 To do:
 - admin can add new cuisine types in app
-- Delete own review and own account
+- delete own account
 
 
 ### Välipalautus 2 : 

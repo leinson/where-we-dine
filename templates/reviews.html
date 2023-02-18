@@ -17,7 +17,7 @@ Cuisine: -
     {{ cuisine.cuisine }} - 
 {% endfor %}
 <br>
-
+<p>
 {% for review in reviews %}
     <hr>
     Review by {{ review.username }}<br>
@@ -28,7 +28,13 @@ Cuisine: -
     <br>
     Date of visit: {{ review.visited }}<br>
     <br>
-    Review submitted at {{ review.sent_at }}
+    Review submitted at {{ review.sent_at }}<br>
+    <br>
+    {% if is_admin == True %}
+    <form action="/delete_review/{{ review.id }}" method=POST>
+        <input type="submit" value="Delete review">
+    </form>
+    {% endif %}
     <hr>
 {% endfor %}
 <p>Amount of reviews: {{ count }}</p> 

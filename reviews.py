@@ -3,7 +3,7 @@ import datetime
 import users
 
 def get_reviews(id):
-    sql = "SELECT RV.review, RV.score, RV.visited, RV.sent_at, U.username FROM reviews RV, restaurants RE, users U WHERE RV.user_id=U.id AND RV.restaurant_id=RE.id AND RE.id=:id"
+    sql = "SELECT RV.id, RV.review, RV.score, RV.visited, RV.sent_at, U.username FROM reviews RV, restaurants RE, users U WHERE RV.user_id=U.id AND RV.restaurant_id=RE.id AND RE.id=:id"
     result = db.session.execute(sql, {"id":id})
     return result.fetchall()
 
@@ -25,6 +25,10 @@ def submit_review(review, score, visited, restaurant_id, username):
     else:
         return validated
 
+def delete_review(id):
+    sql = "DELETE FROM reviews WHERE id=:id"
+    db.session.execute(sql, {"id":id})
+    db.session.commit()
 
 def validate_new_review(review, score, visited, user_id):
     message = True

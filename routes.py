@@ -59,10 +59,11 @@ def user(id):
 
 @app.route("/reviews/<int:id>")
 def show_reviews(id):
+    is_admin = users.is_admin()
     list = reviews.get_reviews(id)
     about = restaurants.get_restaurant_info(id)
     cuisines = restaurants.get_restaurants_cuisines(id)
-    return render_template("reviews.html", count=len(list), reviews=list, restaurant=about, cuisines=cuisines)
+    return render_template("reviews.html", is_admin=is_admin, count=len(list), reviews=list, restaurant=about, cuisines=cuisines)
 
 @app.route("/new-review/<int:id>", methods = ["GET", "POST"])
 def new_review(id):
@@ -109,3 +110,11 @@ def new_restaurant():
                 return render_template("error.html", message=submit)
         else:
             return render_template("error.html", message="You do not have rights to view this page")
+
+@app.route("/delete_review/<int:id>", methods = ["POST"])
+def delete_review(id):
+    if request.method == "POST":
+        reviews.delete_review(id)
+        user_id = users.is_logged_in()
+        return redirect("/user/"+ str(user_id))
+    return render_template("error.html", message= "could not delete review")
