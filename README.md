@@ -3,6 +3,13 @@
 - A restaurant review app
 - Created for the Database application study project (Tietokantasovellus harjoitustyö) at University of Helsinki
 
+ 
+## How to use
+- Fly.io link: https://where-we-dine.fly.dev/
+- For testing admin features: 
+    - username: admintest, password: test123 
+- Refresh the page if you get "Internal server error" when you open the link
+- If fly.io for some other reason does not work, you can test the application locally on your computer. Instructions are at the bottom of the README.
 
 ### Välipalautus 3 :
 
@@ -18,17 +25,13 @@
 ### Välipalautus 2 : 
 
 - A view, which shows all added restaurants 
-
 - When clicking on a restaurant, the restaurants information and reviews show 
-
 - A user can add a review to an existing restaurant 
-
     - Write a review 
     - Add date of visit 
     - Choose a score 
 
 - An admin can add a new restaurant to the page 
-
     - Add restaurants name 
     - Write information about the restaurant 
     - Link to the restaurant’s webpage 
@@ -38,16 +41,36 @@
     - Admin rights manually added to database
 
 - Log in and out 
-
 - Restrictments in html and python to block invalid inputs
+
+
+## To Do
+
+### Features
+- Admin can:
+    - Can edit all info about a restaurant afterwards
+
+### Page and account management
+- Admin right to remove anyone’s account and any restaurant 
+
+### Organizing and search features 
+- A user can search for a restaurant based on cuisine, price or restaurant name
+- A user can organize the list of restaurants based on the review scores 
  
-## How to use
-Fly.io link: https://where-we-dine.fly.dev/
-- For testing admin features: 
-    - username: admintest, password: test123 
+### Other stuff
+- Make visually pleasing, add own CSS or Bootstrap library
+- Eliminate vulnerabilities (csrf)
+- Move cuisine functions to own file
 
-If fly.io for some reason does not work, you can test the application locally on your computer:
 
+### “Nice to have’s”
+- A user can add a restaurant without info & tags 
+    - An admin can later "verify" the restaurant, and add the info & tags 
+- A user can edit their own review after it is posted 
+- A user can do a list of restaurants they want to visit 
+- A user can add pictures to their review
+
+## How to run on your own computer
 - Clone repository to your computer
 - Add file: .env and add to it: 
     - DATABASE_URL=postgresql+psycopg2:///yourusername  
@@ -63,34 +86,3 @@ If fly.io for some reason does not work, you can test the application locally on
     - if this doesn't work, you can manually in psql change your user to an admin by changing the admin column to 'true'
 - Open :start-pg.sh , in another terminal - keep open
 - Run app: flask run
-
-
-## To Do
-
-### Features
-- Admin can:
-    - Can edit all info about a restaurant afterwards
-
-### Page and account management
-
-- Admin right to remove anyone’s account and any restaurant 
- 
-
-### Organizing and search features 
-
-- A user can search for a restaurant based on cuisine, price or restaurant name
-
-- A user can organize the list of restaurants based on the review scores 
- 
-
-### “Nice to have’s”
-
-- A user can add a restaurant without info & tags 
-
-    - An admin can later "verify" the restaurant, and add the info & tags 
-
-- A user can edit their own review after it is posted 
-
-- A user can do a list of restaurants they want to visit 
-
-- A user can add pictures to their review
