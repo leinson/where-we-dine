@@ -3,6 +3,7 @@
     <form action="/cuisines/add" method="POST">
         <input type="text" name="cuisine" minlength="1" maxlength="30" required>
         <input type="submit" value="Add cuisine">
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     </form></p>
 <p>Existing cuisines:</p>
 {% for cuisine in cuisines %}

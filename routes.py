@@ -1,4 +1,4 @@
-from flask import redirect, render_template, request
+from flask import redirect, render_template, request, session, abort
 from app import app
 import users, reviews, restaurants
 
@@ -72,6 +72,8 @@ def new_review(id):
         return render_template("new-review.html", restaurant = restaurant_info)
     
     if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
         review = request.form.get("review", "")
         score = request.form.get("score", "").strip()
         visited = request.form.get("visited", "").strip()
@@ -95,6 +97,8 @@ def new_restaurant():
             return render_template("error.html", message="You do not have rights to view this page")
     if request.method == "POST":
         is_admin = users.is_admin()
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
         if is_admin:
             name = request.form.get("name", "")
             info = request.form.get("info", "")
@@ -114,6 +118,8 @@ def new_restaurant():
 @app.route("/delete_review/<int:id>", methods = ["POST"])
 def delete_review(id):
     if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
         reviews.delete_review(id)
         user_id = users.is_logged_in()
         return redirect("/user/"+ str(user_id))
@@ -123,6 +129,8 @@ def delete_review(id):
 @app.route("/delete_user/<int:id>", methods = ["POST"])
 def delete_user(id):
     if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
         users.delete_user(id)
         return redirect("/")
     return render_template("error.html", message= "Could not delete account")
@@ -139,6 +147,8 @@ def cuisines():
     
 @app.route("/cuisines/add", methods = ["POST"])
 def add_cuisines():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
     cuisine = request.form.get("cuisine", "")
     submit = restaurants.add_new_cuisine(cuisine)
     if submit == True:
@@ -149,6 +159,8 @@ def add_cuisines():
     
 @app.route("/cuisines/delete/<int:id>", methods = ["POST"])
 def delete_cuisine(id):
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
     if restaurants.delete_cuisine(id):
         return redirect("/cuisines")
     return render_template("error.html", message= "Could not delete cuisine")

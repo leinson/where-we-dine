@@ -28,6 +28,7 @@
         {% endfor %}
         <br>
         <input type="submit" value="Submit restaurant">
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     </form>
 {% else %}
     <p>You do not have rights to view this page</p>

@@ -11,6 +11,7 @@
     </p>
 
     <input type="submit" value="Submit review">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 </form>
 {% else %}
     <p><a href="/login">Log in</a> to submit a review. </p>
