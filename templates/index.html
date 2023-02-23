@@ -16,6 +16,7 @@
     <hr>
     <b>{{ restaurant.name }}</b><br>
     <br>
+    <p>Rated: {{ restaurant.coalesce }}/10</p>
     <a href="/reviews/{{ restaurant.id }}">View the reviews</a>
     <hr>
 {% endfor %}
