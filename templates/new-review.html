@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/static/style.css">
+        <title>where we dine</title>
+    </head>
+
+<body>
+<div class="header">
+<h1>where we dine</h1>
+</div>
+
 {% if session.username %}
 <form action="/new-review/{{ restaurant.id }}" method="POST">
     <p>Write your review: <br>
@@ -17,3 +30,5 @@
     <p><a href="/login">Log in</a> to submit a review. </p>
 {% endif %}
 <a href="/">Back to front page</a>
+</body>
+</html>

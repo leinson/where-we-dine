@@ -1,20 +1,32 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/static/style.css">
+        <title>where we dine</title>
+    </head>
+
+<body>
+<div class="header">
+<h1>where we dine</h1>
+</div>
+
 <h2>cuisines</h2>
-<p>Add cuisine:<br>
     <form action="/cuisines/add" method="POST">
+        <label for="cuisine">Add cuisine: </label>
         <input type="text" name="cuisine" minlength="1" maxlength="30" required>
         <input type="submit" value="Add cuisine">
         <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-    </form></p>
+    </form>
 <p>Existing cuisines:</p>
 {% for cuisine in cuisines %}
-    {{ cuisine.cuisine }}
+    
     <form action="/cuisines/delete/{{ cuisine.id }}" method=POST>
+        <label for="cuisine">{{ cuisine.cuisine }}</label>
         <input type="submit" value="Delete" name="delete">
     </form>
 {% endfor %}
 <br>
-
-
 <a href="/">Back to front page</a>
 
 

@@ -1,0 +1,48 @@
+
+
+body {
+    background:lavender;
+    margin: auto;
+    max-width: 75%;
+    font-family: Arial, Helvetica, sans-serif;
+    word-wrap: break-word;
+}
+
+nav {
+    float: right;
+    padding: 2 .5em;
+    margin-top: 1em;
+}
+
+.header {
+    background: rgb(112, 70, 160);
+    font-weight: bold;
+    padding: .1em 1em;
+    border-radius: .10em;
+    font-size: 2em;
+    color: white;
+}
+
+h4 {
+    margin:0;
+}
+hr {
+    border-top: 1px solid black;
+}
+#top-bar {
+    background:yellow;
+    font-weight:bold;
+    padding: 1em;
+    margin-top: 1em;
+    border-radius: .5em
+}
+#top-bar a {
+    color:green;
+}
+a {
+    color: rgb(90, 25, 128);
+}
+
+th, td {
+    padding: 0 1em 0 0;
+}

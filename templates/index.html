@@ -1,17 +1,32 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/static/style.css">
+        <title>where we dine</title>
+    </head>
+
+<body>
+<div class="header">
 <h1>where we dine</h1>
+</div>
+<nav>
 {% if session.username %}
-    <p>You are logged in as {{ session.username }}. <a href="/user/{{ user_id }}">Go to your page</a></p><br>  
-    <a href="/logout">Log out</a>
+    <a href="/user/{{ user_id }}">Profile page </a>
+    <a href="/logout"> Log out</a>
 {% else %}
     <a href="/login">Log in</a>
+<p>Welcome {{ session.username }}!
 {% endif %}
+</nav>
 <h2>the restaurants</h2>
 {% if session.username %}
     {% if is_admin == True %}
-        <a href="/new-restaurant">Add restaurants</a><br>
+        <a href="/new-restaurant">Add restaurants</a>
         <a href="/cuisines">Add cuisines</a><br>
     {% endif %}
 {% endif %}
+<br>
 <form action="/sort_by_cuisine" method=POST>
     <label for="cuisine">Choose a cuisine:</label>
     <select name="cuisine_id" id="cuisine_id">
@@ -33,3 +48,5 @@
 {% endfor %}
 <p>Amount of restaurants: {{ count }}</p><br>
 <p>Restaurant review app - Database application study project at University of Helsinki</p>
+</body>
+</html>
