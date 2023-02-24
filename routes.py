@@ -8,7 +8,8 @@ def index():
     user_id = users.is_logged_in()
     is_admin = users.is_admin()
     list = restaurants.get_restaurants()
-    return render_template("index.html", count=len(list), restaurants=list, is_admin=is_admin, user_id=user_id)
+    cuisines = restaurants.get_cuisines()
+    return render_template("index.html", count=len(list), restaurants=list, cuisines=cuisines, is_admin=is_admin, user_id=user_id)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -164,4 +165,18 @@ def delete_cuisine(id):
     if restaurants.delete_cuisine(id):
         return redirect("/cuisines")
     return render_template("error.html", message= "Could not delete cuisine")
+
+
+@app.route("/sort_by_cuisine", methods = ["POST"])
+def sort_by_cuisine():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
+    cuisine_id = request.form.get("cuisine_id", "")
+    user_id = users.is_logged_in()
+    is_admin = users.is_admin()
+    list = restaurants.sort_by_cuisine(cuisine_id)
+    cuisines = restaurants.get_cuisines()
+    cuisine_name = restaurants.get_cuisine(cuisine_id)
+    return render_template("index.html", count=len(list), restaurants=list, cuisines=cuisines, cuisine_name=cuisine_name, is_admin=is_admin, user_id=user_id)
+   
 

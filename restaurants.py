@@ -90,8 +90,19 @@ def delete_cuisine(id):
 
 def get_one_average_score(id):
     #For the restaurants own reviews page
-    sql = "SELECT AVG(score) FROM reviews WHERE restaurant_id=:id"
+    sql = "SELECT COALESCE(round(AVG(score)::numeric,2),'0') FROM reviews WHERE restaurant_id=:id"
     result = db.session.execute(sql, {"restaurant_id":id})
     result = result.fetchone()
     result = "{:.2f}".format(result[0])
     return result
+
+def sort_by_cuisine(id):
+    sql = "SELECT RE.id, RE.name, COALESCE(round(AVG(RV.score)::numeric,2),'0') FROM restaurants RE, reviews RV, restaurant_cuisines RC WHERE RV.restaurant_id=RE.id AND RC.restaurant_id=RV.restaurant_id AND RC.cuisine_id=:id GROUP BY RE.name, RE.id"
+    result = db.session.execute(sql, {"id":id})
+    return result.fetchall()
+
+def get_cuisine(id):
+    sql = "SELECT cuisine FROM cuisines WHERE id=:id"
+    result = db.session.execute(sql, {"id":id})
+    result = result.fetchone()
+    return result[0]

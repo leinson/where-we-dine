@@ -12,6 +12,17 @@
         <a href="/cuisines">Add cuisines</a><br>
     {% endif %}
 {% endif %}
+<form action="/sort_by_cuisine" method=POST>
+    <label for="cuisine">Choose a cuisine:</label>
+    <select name="cuisine_id" id="cuisine_id">
+    {% for cuisine in cuisines %}
+        <option value={{ cuisine.id }}>{{ cuisine.cuisine }}</option>
+    {% endfor %}
+    </select>
+    <input type="submit" value="Search">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+</form>
+{{ cuisine_name }}
 {% for restaurant in restaurants %}
     <hr>
     <b>{{ restaurant.name }}</b><br>
