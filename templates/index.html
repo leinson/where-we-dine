@@ -47,6 +47,16 @@
     <input type="submit" value="Search">
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 </form>
+<form action="/sort_by_price" method=POST>
+    <label for="price">Price:</label>
+    <input type="radio" id="price" name="price" value="Low" required>
+    <label for="price">Low</label>
+    <input type="radio" id="price" name="price" value="High" required>
+    <label for="price">High</label>
+    <input type="submit" value="Search">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+</form>
+</p>
 <a href="/">All restaurants</a><br>
 {{ cuisine_name }}
 {% for restaurant in restaurants %}

@@ -117,4 +117,16 @@ def sort_by_score(score):
         return False
     result = db.session.execute(sql)
     return result.fetchall()
+
+
+def sort_by_price(price):
+    print(price)
+    if price == "High":
+        sql = "SELECT RE.id, RE.name, COALESCE(round(AVG(RV.score)::numeric,2),'0'), RE.price FROM restaurants RE LEFT JOIN reviews RV ON RV.restaurant_id=RE.id GROUP BY RE.name, RE.id ORDER BY RE.price DESC NULLS LAST"
+    elif price == "Low":
+        sql = "SELECT RE.id, RE.name, COALESCE(round(AVG(RV.score)::numeric,2),'0'), RE.price FROM restaurants RE LEFT JOIN reviews RV ON RV.restaurant_id=RE.id GROUP BY RE.name, RE.id ORDER BY RE.price NULLS LAST"
+    else:
+        return False
+    result = db.session.execute(sql)
+    return result.fetchall()
     
