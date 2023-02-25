@@ -7,7 +7,7 @@
     </head>
 <body>
 <div class="header">
-    <img src="/static/headertest.png" alt="header">
+    <img src="/static/logo.png" alt="header">
 </div>
 
 <nav>
@@ -20,16 +20,17 @@
 {% endif %}
 </nav>
 
-<h2>the restaurants</h2>
+<h2>THE RESTAURANTS</h2>
 <div class="lists">
 {% if session.username %}
     {% if is_admin == True %}
+        <p>Admin tools:
         <a href="/new-restaurant">Add restaurants</a>
-        <a href="/cuisines">Add cuisines</a>
+        <a href="/cuisines">Add cuisines</a></p>
     {% endif %}
 {% endif %}
 <br>
-<p>Sort by: </p>
+<h3>SORT RESTAURANTS</h3>
 <form action="/sort_by_cuisine" method=POST>
     <label for="cuisine">Cuisine:</label>
     <select name="cuisine_id" id="cuisine_id">
@@ -50,7 +51,7 @@
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 </form>
 <form action="/sort_by_price" method=POST>
-    <label for="price">Price:</label>
+    <label for="price">Pricing:</label>
     <input type="radio" id="price" name="price" value="Low" required>
     <label for="price">Low</label>
     <input type="radio" id="price" name="price" value="High" required>
@@ -77,7 +78,7 @@
     {% else %}
         <p>Rated: {{ restaurant.coalesce }}/10.00</p> 
     {% endif %}
-    <a href="/reviews/{{ restaurant.id }}">View the reviews</a>
+    <a href="/reviews/{{ restaurant.id }}">View reviews</a>
     <hr>
 {% endfor %}
 </div>

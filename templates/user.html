@@ -7,7 +7,7 @@
     </head>
 <body>
 <div class="header">
-    <img src="/static/headertest.png" alt="header">
+    <img src="/static/logo.png" alt="header">
 </div>
 <nav>
     <a href="/">Home</a>
@@ -18,7 +18,7 @@
     {% endif %}
     
 </nav>
-<h2>Profile - {{ session.username }}</h2>
+<h1>{{ session.username }}</h1>
 
 <script LANGUAGE="JavaScript">
     <!--
@@ -33,12 +33,12 @@
     // -->
 </script>
 
-<h2>Your reviews</h2>
+<h2>YOUR REVIEWS</h2>
 <p>You have written {{ count }} reviews</p> 
 <div class="lists">
 {% for review in reviews %}
     <hr>
-    Restaurant {{ review.name }}<br>
+    Restaurant: {{ review.name }}<br>
     <br>
     Review: {{ review.review }}<br>
     <br>

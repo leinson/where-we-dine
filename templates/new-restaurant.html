@@ -7,7 +7,7 @@
     </head>
 <body>
 <div class="header">
-    <img src="/static/headertest.png" alt="header">
+    <img src="/static/logo.png" alt="header">
 </div>
 <nav>
     <a href="/">Home</a>
@@ -19,7 +19,7 @@
     {% endif %}
     
 </nav>
-<h1>Add a restaurant</h1><br>
+<h2>ADD RESTAURANT</h2><br>
 <div class="lists">
     {% if is_admin == True %}
     <form action="/new-restaurant" method="POST">
@@ -48,9 +48,10 @@
         <label for="cuisine"> {{ cuisine.cuisine }}</label>
         {% endfor %}
         <br>
+        <br>
         <input type="submit" value="Submit restaurant">
         <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-    </form>
+    </form><br>
 </div>
 {% else %}
     <p>You do not have rights to view this page</p>

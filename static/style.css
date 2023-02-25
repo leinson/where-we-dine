@@ -1,26 +1,37 @@
 
 
 body {
-    background:lavender;
+    background:#FEF0D8;
     margin: auto;
     max-width: 75%;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 600;
     word-wrap: break-word;
 }
-
+h2, h3 {
+    color:#B800A5;
+}
+h1 {
+    color:#B800A5;
+    text-align: center;
+}
 nav {
     padding: 2%;
     text-align: right;
     position: relative;
     width: 100%;
     height: auto;
-    background: wheat;
+    background: #EC9909;
     margin-top: 2%;
+    margin-bottom: 4%;
     box-shadow: black 0 10px 20px -10px;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
 }
 
 input[type=submit] {
-    background: #6e2d5b;
+    background: #188C7C;
     border-radius: 999px;
     box-shadow: black 0 10px 20px -10px;
     box-sizing: border-box;
@@ -60,14 +71,35 @@ textarea {
     margin: 8px 0;
     border-radius: 4px;
 }
+
+select {
+    padding: 5px 10px;
+    margin: 8px 0;
+    border-radius: 4px;
+    font-size:medium;
+    background:white;
+}
 .lists {
-    background: rgb(228, 209, 185);
+    background:#fff8fe;
     color:rgb(31, 30, 30);
     position: relative;
     padding: 2%;
     width: 100%;
     height: auto;
     box-shadow: black 0 10px 20px -10px;
+    border-radius: 4px;
+}
+.restaurant {
+    background:#fff8fe;
+    color:rgb(31, 30, 30);
+    position: relative;
+    padding: 2%;
+    width: 100%;
+    height: auto;
+    box-shadow: black 0 10px 20px -10px;
+    border-radius: 4px;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 .header {
@@ -75,6 +107,7 @@ textarea {
     text-align: center;
     width: 100%;
     height: auto;
+    border-radius: 4px;
 }
 
 .footer {
@@ -83,11 +116,12 @@ textarea {
     bottom: 0;
     color: rgb(255, 255, 255);
     text-align: center;
-    background: rgb(78, 63, 102);
+    background: #0F574E;
     padding: 2%;
     margin-top: 2%;
     margin-bottom: 2%;
     box-shadow: black 0 10px 20px -10px;
+    border-radius: 4px;
 }
 
 hr {
@@ -95,7 +129,8 @@ hr {
 }
 
 a {
-    background: wheat;
+    background: #188C7C;
+    color: white;
     border-radius: 999px;
     box-shadow: black 0 10px 20px -10px;
     box-sizing: border-box;

@@ -7,7 +7,7 @@
     </head>
 <body>
 <div class="header">
-    <img src="/static/headertest.png" alt="header">
+    <img src="/static/logo.png" alt="header">
 </div>
 <nav>
     <a href="/">Home</a>
@@ -19,7 +19,7 @@
     {% endif %}
     
 </nav>
-<h2>Add a review</h2>
+<h2>ADD REVIEW</h2>
 <div class="lists">
 {% if session.username %}
 <form action="/new-review/{{ restaurant.id }}" method="POST">

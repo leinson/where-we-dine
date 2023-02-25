@@ -7,7 +7,7 @@
     </head>
 <body>
 <div class="header">
-    <img src="/static/headertest.png" alt="header">
+    <img src="/static/logo.png" alt="header">
 </div>
 <nav>
     <a href="/">Home</a>
@@ -17,8 +17,9 @@
     {% else %}
         <a href="/login">Log in</a>
     {% endif %}
-
+<br>
 </nav>
+<div class="restaurant">
 <h2>{{ restaurant.name }}</h2>
 <p>
     {{ restaurant.info }}<br>
@@ -28,7 +29,7 @@
     Price: {{ restaurant.price }}<br>
     <br>
     {% if restaurant.web_link != '' %}
-        <a href="{{ restaurant.web_link }}">Go to restaurants own web page</a>
+        <a href="{{ restaurant.web_link }}">Restaurant's website</a>
     {% endif %}
 </p>
 
@@ -36,14 +37,17 @@ Cuisine: -
 {% for cuisine in cuisines %}
     {{ cuisine.cuisine }} - 
 {% endfor %}
-<br>
+</div>
 <p>
 <h2>the reviews</h2>
+<div class="accent">
 {% if session.username %}
+    
     <a href="/new-review/{{ restaurant.id }}">Write a review here</a><br>
-{% else %}
+    {% else %}
     <a href="/login">Log in</a> to write a review<br>
 {% endif %}
+</div>
 {% if count == 1 %}
     <p>This restaurant has {{ count }} review</p>
 {% else %}

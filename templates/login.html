@@ -7,19 +7,21 @@
     </head>  
 <body>
 <div class="header">
-    <img src="/static/headertest.png" alt="header">
+    <img src="/static/logo.png" alt="header">
 </div>
 <nav>
     <a href="/">Home</a>
 </nav>
+<h2>LOG IN</h2>
+<div class="lists">
 <form action="/login" method="post">
-    Username: <input type="text" name="username" required>
-    <p>
-    Password: <input type="password" name="password" required>
-    <p>
+    <p>Username: <br> <input type="text" name="username" required></p>
+    <p>Password: <br> <input type="password" name="password" required></p>
     <input type="submit" value="Log in">
 </form>
+</div><br>
 Don't have an account? <a href="/register">Create one here</a><br>
+<br>
 <div class="footer">
     <p>Restaurant review app - Database application study project at University of Helsinki</p>
 </div>
