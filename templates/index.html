@@ -63,7 +63,11 @@
     <hr>
     <b>{{ restaurant.name }}</b><br>
     <br>
-    <p>Rated: {{ restaurant.coalesce }}/10</p>
+    {% if restaurant.coalesce == 0 %}
+        <p>No reviews</p>
+    {% else %}
+        <p>Rated: {{ restaurant.coalesce }}/10</p> 
+    {% endif %}
     <a href="/reviews/{{ restaurant.id }}">View the reviews</a>
     <hr>
 {% endfor %}

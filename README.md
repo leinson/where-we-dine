@@ -16,6 +16,7 @@
 - Eliminate vulnerabilities (csrf)
 - A user can search for a restaurant based on cuisine
 - A user can organize the list of restaurants based on the review scores
+- A user can search for a restaurant based on price
 
 ### Välipalautus 3 :
 
@@ -54,10 +55,6 @@
 
 ### Page and account management
 - Admin right to remove any restaurant 
-
-### Organizing and search features 
-- A user can search for a restaurant based on price or restaurant name
-
  
 ### Other stuff
 - Make visually pleasing, add own CSS or Bootstrap library (in progress)
@@ -72,6 +69,7 @@
 - A user can do a list of restaurants they want to visit 
 - A user can add pictures to their review
 - Admin can edit restaurant info
+- Search bar for free word search
 
 ## How to run on your own computer
 - Clone repository to your computer

@@ -129,4 +129,3 @@ def sort_by_price(price):
         return False
     result = db.session.execute(sql)
     return result.fetchall()
-    
