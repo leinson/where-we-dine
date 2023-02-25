@@ -55,11 +55,6 @@
 
 ### Page and account management
 - Admin right to remove any restaurant 
- 
-### Other stuff
-- Make visually pleasing, add own CSS or Bootstrap library (in progress)
-- Move cuisine functions to own file
-- check pylint
 
 
 ### Future development ideas

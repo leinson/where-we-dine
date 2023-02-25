@@ -20,8 +20,7 @@ def login():
         password = request.form["password"]
         if users.login(username, password):
             return redirect("/")
-        else:
-            return render_template("error.html", message="Wrong username or password")
+        return render_template("error.html", message="Wrong username or password")
 
 @app.route("/logout")
 def logout():
@@ -67,13 +66,12 @@ def show_reviews(id):
     cuisines = restaurants.get_restaurants_cuisines(id)
     return render_template("reviews.html", is_admin=is_admin, user_id=user_id, count=len(list), reviews=list, restaurant=about, cuisines=cuisines)
 
-@app.route("/new-review/<int:id>", methods = ["GET", "POST"])
+@app.route("/new-review/<int:id>", methods=["GET", "POST"])
 def new_review(id):
     if request.method == "GET":
         user_id = users.is_logged_in()
         restaurant_info = restaurants.get_restaurant_info(id)
-        return render_template("new-review.html", user_id=user_id, restaurant = restaurant_info)
-    
+        return render_template("new-review.html", user_id=user_id, restaurant=restaurant_info)
     if request.method == "POST":
         if session["csrf_token"] != request.form["csrf_token"]:
             abort(403)
@@ -85,10 +83,9 @@ def new_review(id):
         submit = reviews.submit_review(review, score, visited, restaurant_id, username)
         if submit == True:
             return redirect("/reviews/" + str(restaurant_id))
-        else:
-            return render_template("error.html", message=submit)
+        return render_template("error.html", message=submit)
 
-@app.route("/new-restaurant", methods = ["GET", "POST"])
+@app.route("/new-restaurant", methods=["GET", "POST"])
 def new_restaurant():
     if request.method == "GET":
         is_admin = users.is_admin()
@@ -97,8 +94,7 @@ def new_restaurant():
         list = restaurants.get_cuisines()
         if is_admin:
             return render_template("new-restaurant.html", is_admin=is_admin, user_id=user_id, cuisines=list)
-        else:
-            return render_template("error.html", message="You do not have rights to view this page")
+        return render_template("error.html", message="You do not have rights to view this page")
     if request.method == "POST":
         is_admin = users.is_admin()
         if session["csrf_token"] != request.form["csrf_token"]:
@@ -114,12 +110,10 @@ def new_restaurant():
             submit = restaurants.add_restaurant(name, info, web_link, city, price, is_admin, cuisines)
             if submit == True:
                 return redirect("/")
-            else:
-                return render_template("error.html", message=submit)
-        else:
-            return render_template("error.html", message="You do not have rights to view this page")
+            return render_template("error.html", message=submit)
+        return render_template("error.html", message="You do not have rights to view this page")
 
-@app.route("/delete_review/<int:id>", methods = ["POST"])
+@app.route("/delete_review/<int:id>", methods=["POST"])
 def delete_review(id):
     if request.method == "POST":
         if session["csrf_token"] != request.form["csrf_token"]:
@@ -127,19 +121,18 @@ def delete_review(id):
         reviews.delete_review(id)
         user_id = users.is_logged_in()
         return redirect("/user/"+ str(user_id))
-    return render_template("error.html", message= "Could not delete review")
+    return render_template("error.html", message="Could not delete review")
 
-
-@app.route("/delete_user/<int:id>", methods = ["POST"])
+@app.route("/delete_user/<int:id>", methods=["POST"])
 def delete_user(id):
     if request.method == "POST":
         if session["csrf_token"] != request.form["csrf_token"]:
             abort(403)
         users.delete_user(id)
         return redirect("/")
-    return render_template("error.html", message= "Could not delete account")
+    return render_template("error.html", message="Could not delete account")
 
-@app.route("/cuisines", methods = ["GET"])
+@app.route("/cuisines", methods=["GET"])
 def cuisines():
     is_admin = users.is_admin()
     user_id = users.is_logged_in()
@@ -147,10 +140,9 @@ def cuisines():
     list = restaurants.get_cuisines()
     if is_admin:
         return render_template("cuisines.html", is_admin=is_admin, user_id=user_id, cuisines=list)
-    else:
-        return render_template("error.html", message="You do not have rights to view this page")
+    return render_template("error.html", message="You do not have rights to view this page")
     
-@app.route("/cuisines/add", methods = ["POST"])
+@app.route("/cuisines/add", methods=["POST"])
 def add_cuisines():
     if session["csrf_token"] != request.form["csrf_token"]:
         abort(403)
@@ -158,20 +150,17 @@ def add_cuisines():
     submit = restaurants.add_new_cuisine(cuisine)
     if submit == True:
         return redirect("/cuisines")
-    else:
-        return render_template("error.html", message="Could not add cuisine")
+    return render_template("error.html", message="Could not add cuisine")
 
-    
-@app.route("/cuisines/delete/<int:id>", methods = ["POST"])
+@app.route("/cuisines/delete/<int:id>", methods=["POST"])
 def delete_cuisine(id):
     if session["csrf_token"] != request.form["csrf_token"]:
         abort(403)
     if restaurants.delete_cuisine(id):
         return redirect("/cuisines")
-    return render_template("error.html", message= "Could not delete cuisine")
+    return render_template("error.html", message="Could not delete cuisine")
 
-
-@app.route("/sort_by_cuisine", methods = ["POST"])
+@app.route("/sort_by_cuisine", methods=["POST"])
 def sort_by_cuisine():
     if session["csrf_token"] != request.form["csrf_token"]:
         abort(403)
@@ -182,9 +171,8 @@ def sort_by_cuisine():
     cuisines = restaurants.get_cuisines()
     cuisine_name = restaurants.get_cuisine(cuisine_id)
     return render_template("index.html", count=len(list), restaurants=list, cuisines=cuisines, cuisine_name=cuisine_name, is_admin=is_admin, user_id=user_id)
-   
 
-@app.route("/sort_by_score", methods = ["POST"])
+@app.route("/sort_by_score", methods=["POST"])
 def sort_by_score():
     if session["csrf_token"] != request.form["csrf_token"]:
         abort(403)
@@ -198,7 +186,7 @@ def sort_by_score():
     return render_template("index.html", count=len(list), restaurants=list, cuisines=cuisines, is_admin=is_admin, user_id=user_id)
    
 
-@app.route("/sort_by_price", methods = ["POST"])
+@app.route("/sort_by_price", methods=["POST"])
 def sort_by_price():
     if session["csrf_token"] != request.form["csrf_token"]:
         abort(403)
@@ -210,4 +198,3 @@ def sort_by_price():
         return redirect("/")
     cuisines = restaurants.get_cuisines()
     return render_template("index.html", count=len(list), restaurants=list, cuisines=cuisines, is_admin=is_admin, user_id=user_id)
-

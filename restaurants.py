@@ -17,18 +17,17 @@ def add_restaurant(name, info, web_link, city, price, is_admin, cuisines):
     if len(web_link) < 6:
         web_link = ""
     if validate == True:
-        sql="INSERT INTO restaurants (name, info, web_link, city, price) VALUES (:name, :info, :web_link, :city, :price)"
+        sql = "INSERT INTO restaurants (name, info, web_link, city, price) VALUES (:name, :info, :web_link, :city, :price)"
         db.session.execute(sql, {
-                "name":name,
-                "info":info,
-                "web_link":web_link,
-                "city":city,
-                "price":price})
+            "name":name,
+            "info":info,
+            "web_link":web_link,
+            "city":city,
+            "price":price})
         add_restaurant_cuisines(name, cuisines)
         db.session.commit()
         return True
-    else:
-        return validate
+    return validate
 
 def validate_restaurant(name, info, city, price):
     print("validate restaurant")
@@ -45,11 +44,11 @@ def validate_restaurant(name, info, city, price):
     return message
 
 def add_restaurant_cuisines(name, cuisines):
-    sql="SELECT id FROM restaurants WHERE name=:name"
+    sql = "SELECT id FROM restaurants WHERE name=:name"
     result = db.session.execute(sql, {"name":name})
-    restaurant_id=result.fetchone()
+    restaurant_id = result.fetchone()
     restaurant_id = restaurant_id[0]
-    cuisine_ids=[]
+    cuisine_ids = []
     for cuisine in cuisines:
         sql = "SELECT id FROM cuisines WHERE cuisine=:cuisine"
         result = db.session.execute(sql, {"cuisine":cuisine})
@@ -57,10 +56,10 @@ def add_restaurant_cuisines(name, cuisines):
         result = result[0]
         cuisine_ids.append(result)
     for cuisine_id in cuisine_ids:
-        sql="INSERT INTO restaurant_cuisines (restaurant_id, cuisine_id) VALUES (:restaurant_id, :cuisine_id)"
+        sql = "INSERT INTO restaurant_cuisines (restaurant_id, cuisine_id) VALUES (:restaurant_id, :cuisine_id)"
         db.session.execute(sql, {
-                "restaurant_id":restaurant_id,
-                "cuisine_id":cuisine_id})
+            "restaurant_id":restaurant_id,
+            "cuisine_id":cuisine_id})
     return True
 
 def get_restaurants_cuisines(id):

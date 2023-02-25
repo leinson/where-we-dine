@@ -1,5 +1,5 @@
-from db import db
 import datetime
+from db import db
 import users
 
 def get_reviews(id):
@@ -22,8 +22,7 @@ def submit_review(review, score, visited, restaurant_id, username):
             "visited":visited})
         db.session.commit()
         return True
-    else:
-        return validated
+    return validated
 
 def delete_review(id):
     sql = "DELETE FROM reviews WHERE id=:id"
@@ -38,7 +37,7 @@ def validate_new_review(review, score, visited, user_id):
         message = "Your review is too long"
     if len(review) < 3:
         message = "Your review is too short"
-    if int(score) not in [1,2,3,4,5,6,7,8,9,10]:
+    if int(score) not in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
         message = "Incorrect score, should be a number between 1-10"
     if not validate_date(visited):
         message = "Incorrect date format, should be YYYY-MM-DD"
@@ -50,7 +49,7 @@ def validate_date(visited):
         datetime.datetime.strptime(visited, "%Y-%m-%d")
     except ValueError:
         print("Date value error")
-        return False 
+        return False
     if int(visited[0:4]) < 1900:
         return False
     return True
