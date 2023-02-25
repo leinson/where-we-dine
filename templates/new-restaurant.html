@@ -5,14 +5,23 @@
         <link rel="stylesheet" href="/static/style.css">
         <title>where we dine</title>
     </head>
-
 <body>
 <div class="header">
-<h1>where we dine</h1>
+    <img src="/static/headertest.png" alt="header">
 </div>
-
+<nav>
+    <a href="/">Home</a>
+    {% if session.username %}
+        <a href="/user/{{ user_id }}">Profile</a>
+        <a href="/logout"> Log out</a>
+    {% else %}
+        <a href="/login">Log in</a>
+    {% endif %}
+    
+</nav>
 <h1>Add a restaurant</h1><br>
-{% if is_admin == True %}
+<div class="lists">
+    {% if is_admin == True %}
     <form action="/new-restaurant" method="POST">
         <p>Name of restaurant: <br>
             <input type="text" name="name" minlength="1" maxlength="30" required>
@@ -26,26 +35,28 @@
         <p>City: <br>
             <input type="text" name="city" required>
         </p>
-        <p>Price: <br>
+        <p>Price: </p>
             <input type="radio" id="price" name="price" value="€" required>
             <label for="price">€</label>
             <input type="radio" id="price" name="price" value="€€" required>
             <label for="price">€€</label>
             <input type="radio" id="price" name="price" value="€€€" required>
             <label for="price">€€€</label>
-        </p>
         <p>Choose cuisines:</p>
         {% for cuisine in cuisines %}
         <input type="checkbox" id="cuisine" name="cuisine" value={{ cuisine.cuisine }}>
-        <label for="cuisine"> {{ cuisine.cuisine }}</label><br>
+        <label for="cuisine"> {{ cuisine.cuisine }}</label>
         {% endfor %}
         <br>
         <input type="submit" value="Submit restaurant">
         <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     </form>
+</div>
 {% else %}
     <p>You do not have rights to view this page</p>
 {% endif %}
-<a href="/">Back to front page</a>
+<div class="footer">
+    <p>Restaurant review app - Database application study project at University of Helsinki</p>
+</div>
 </body>
 </html>

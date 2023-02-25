@@ -5,12 +5,19 @@
         <link rel="stylesheet" href="/static/style.css">
         <title>where we dine</title>
     </head>
-
 <body>
 <div class="header">
-<h1>where we dine</h1>
+    <img src="/static/headertest.png" alt="header">
 </div>
-
+<nav>
+    <a href="/">Home</a>
+    {% if session.username %}
+        <a href="/logout"> Log out</a>
+    {% else %}
+        <a href="/login">Log in</a>
+    {% endif %}
+    
+</nav>
 <h2>Profile - {{ session.username }}</h2>
 
 <script LANGUAGE="JavaScript">
@@ -26,8 +33,9 @@
     // -->
 </script>
 
-<p>Your reviews:<br>
-</p>
+<h2>Your reviews</h2>
+<p>You have written {{ count }} reviews</p> 
+<div class="lists">
 {% for review in reviews %}
     <hr>
     Restaurant {{ review.name }}<br>
@@ -46,7 +54,7 @@
     </form>
     <hr>
 {% endfor %}
-<p>Amount of reviews written: {{ count }}</p> 
+</div>
 <br>
 {% if is_admin == False %}
     <form action="/delete_user/{{ user_id }}" method=POST>
@@ -54,7 +62,8 @@
         <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     </form>
 {% endif %}
-
-<a href="/">Back to front page</a>
+<div class="footer">
+    <p>Restaurant review app - Database application study project at University of Helsinki</p>
+</div>
 </body>
 </html>

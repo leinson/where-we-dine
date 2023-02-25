@@ -5,12 +5,20 @@
         <link rel="stylesheet" href="/static/style.css">
         <title>where we dine</title>
     </head>
-
 <body>
 <div class="header">
-<h1>where we dine</h1>
+    <img src="/static/headertest.png" alt="header">
 </div>
+<nav>
+    <a href="/">Home</a>
+    {% if session.username %}
+        <a href="/user/{{ user_id }}">Profile</a>
+        <a href="/logout"> Log out</a>
+    {% else %}
+        <a href="/login">Log in</a>
+    {% endif %}
 
+</nav>
 <h2>{{ restaurant.name }}</h2>
 <p>
     {{ restaurant.info }}<br>
@@ -30,7 +38,20 @@ Cuisine: -
 {% endfor %}
 <br>
 <p>
+<h2>the reviews</h2>
+{% if session.username %}
+    <a href="/new-review/{{ restaurant.id }}">Write a review here</a><br>
+{% else %}
+    <a href="/login">Log in</a> to write a review<br>
+{% endif %}
+{% if count == 1 %}
+    <p>This restaurant has {{ count }} review</p>
+{% else %}
+    <p>This restaurant has {{ count }} reviews</p>
+{% endif %}
+<br>
 {% for review in reviews %}
+    <div class="lists">
     <hr>
     Review by {{ review.username }}<br>
     <br>
@@ -49,17 +70,11 @@ Cuisine: -
     </form>
     {% endif %}
     <hr>
+    </div>
 {% endfor %}
-<p>Amount of reviews: {{ count }}</p> 
-<br>
-{% if session.username %}
-    <a href="/new-review/{{ restaurant.id }}">Write a review here</a><br>
-    <p>You are logged in as {{ session.username }}.</p>
-{% else %}
-    <a href="/login">Log in</a> to write a review<br>
-{% endif %}
-<br>
 
-<a href="/">Back to front page</a>
+<div class="footer">
+    <p>Restaurant review app - Database application study project at University of Helsinki</p>
+</div>
 </body>
 </html>

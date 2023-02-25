@@ -5,30 +5,42 @@
         <link rel="stylesheet" href="/static/style.css">
         <title>where we dine</title>
     </head>
-
 <body>
 <div class="header">
-<h1>where we dine</h1>
+    <img src="/static/headertest.png" alt="header">
 </div>
-
+<nav>
+    <a href="/">Home</a>
+    {% if session.username %}
+        <a href="/user/{{ user_id }}">Profile</a>
+        <a href="/logout"> Log out</a>
+    {% else %}
+        <a href="/login">Log in</a>
+    {% endif %}
+    
+</nav>
+<h2>Add a review</h2>
+<div class="lists">
 {% if session.username %}
 <form action="/new-review/{{ restaurant.id }}" method="POST">
-    <p>Write your review: <br>
-    <textarea name="review" rows="6" cols="50" maxlength="2000" required></textarea></p>
-    <br>
-    <p>Score: <br>
+    <p>Write your review: </p>
+    <textarea name="review" rows="6" cols="50" maxlength="2000" required></textarea>
+    <p>Score:
         <input type="number" name="score" min="1" max="10" required>
     </p>
-    <p>Date of visit: <br>
+    <p>Date of visit: 
         <input type="date" name="visited" min="1900-01-01" required>
     </p>
 
     <input type="submit" value="Submit review">
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 </form>
+</div>
 {% else %}
     <p><a href="/login">Log in</a> to submit a review. </p>
 {% endif %}
-<a href="/">Back to front page</a>
+<div class="footer">
+    <p>Restaurant review app - Database application study project at University of Helsinki</p>
+</div>
 </body>
 </html>

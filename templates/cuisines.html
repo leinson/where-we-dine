@@ -5,12 +5,19 @@
         <link rel="stylesheet" href="/static/style.css">
         <title>where we dine</title>
     </head>
-
 <body>
 <div class="header">
-<h1>where we dine</h1>
+    <img src="/static/headertest.png" alt="header">
 </div>
-
+<nav>
+    <a href="/">Home</a>
+    {% if session.username %}
+        <a href="/user/{{ user_id }}">Profile</a>
+        <a href="/logout"> Log out</a>
+    {% else %}
+        <a href="/login">Log in</a>
+    {% endif %} 
+</nav>
 <h2>cuisines</h2>
     <form action="/cuisines/add" method="POST">
         <label for="cuisine">Add cuisine: </label>
@@ -22,11 +29,13 @@
 {% for cuisine in cuisines %}
     
     <form action="/cuisines/delete/{{ cuisine.id }}" method=POST>
-        <label for="cuisine">{{ cuisine.cuisine }}</label>
+        - <label for="cuisine">{{ cuisine.cuisine }}</label>
         <input type="submit" value="Delete" name="delete">
     </form>
 {% endfor %}
 <br>
-<a href="/">Back to front page</a>
-
-
+<div class="footer">
+    <p>Restaurant review app - Database application study project at University of Helsinki</p>
+</div>
+</body>
+</html>

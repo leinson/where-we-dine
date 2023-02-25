@@ -4,22 +4,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/static/style.css">
         <title>where we dine</title>
-    </head>
-
+    </head>  
 <body>
 <div class="header">
-<h1>where we dine</h1>
+    <img src="/static/headertest.png" alt="header">
 </div>
-
+<nav>
+    <a href="/">Home</a>
+</nav>
 <form action="/login" method="post">
     Username: <input type="text" name="username" required>
     <p>
     Password: <input type="password" name="password" required>
     <p>
     <input type="submit" value="Log in">
-    </form>
-    Don't have an account? <a href="/register">Create one here</a><br>
-    <br>
-    <a href="/">Back to front page</a>
+</form>
+Don't have an account? <a href="/register">Create one here</a><br>
+<div class="footer">
+    <p>Restaurant review app - Database application study project at University of Helsinki</p>
+</div>
 </body>
 </html>

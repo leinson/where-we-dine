@@ -5,12 +5,13 @@
         <link rel="stylesheet" href="/static/style.css">
         <title>where we dine</title>
     </head>
-
 <body>
 <div class="header">
-<h1>where we dine</h1>
+    <img src="/static/headertest.png" alt="header">
 </div>
-
+<nav>
+    <a href="/">Home</a>
+</nav>
 <form action="/register" method="post">
     Username: <input type="text" name="username" minlength="2" maxlength="20" required>
     <p>
@@ -21,6 +22,8 @@
     <input type="submit" value="Create account">
     </form> <br>
     <br>
-    <a href="/">Back to front page</a>
+<div class="footer">
+    <p>Restaurant review app - Database application study project at University of Helsinki</p>
+</div>
 </body>
 </html>

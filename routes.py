@@ -61,16 +61,18 @@ def user(id):
 @app.route("/reviews/<int:id>")
 def show_reviews(id):
     is_admin = users.is_admin()
+    user_id = users.is_logged_in()
     list = reviews.get_reviews(id)
     about = restaurants.get_restaurant_info(id)
     cuisines = restaurants.get_restaurants_cuisines(id)
-    return render_template("reviews.html", is_admin=is_admin, count=len(list), reviews=list, restaurant=about, cuisines=cuisines)
+    return render_template("reviews.html", is_admin=is_admin, user_id=user_id, count=len(list), reviews=list, restaurant=about, cuisines=cuisines)
 
 @app.route("/new-review/<int:id>", methods = ["GET", "POST"])
 def new_review(id):
     if request.method == "GET":
+        user_id = users.is_logged_in()
         restaurant_info = restaurants.get_restaurant_info(id)
-        return render_template("new-review.html", restaurant = restaurant_info)
+        return render_template("new-review.html", user_id=user_id, restaurant = restaurant_info)
     
     if request.method == "POST":
         if session["csrf_token"] != request.form["csrf_token"]:
@@ -90,10 +92,11 @@ def new_review(id):
 def new_restaurant():
     if request.method == "GET":
         is_admin = users.is_admin()
+        user_id = users.is_logged_in()
         print("new restaurant GET method")
         list = restaurants.get_cuisines()
         if is_admin:
-            return render_template("new-restaurant.html", is_admin=is_admin, cuisines=list)
+            return render_template("new-restaurant.html", is_admin=is_admin, user_id=user_id, cuisines=list)
         else:
             return render_template("error.html", message="You do not have rights to view this page")
     if request.method == "POST":
@@ -139,10 +142,11 @@ def delete_user(id):
 @app.route("/cuisines", methods = ["GET"])
 def cuisines():
     is_admin = users.is_admin()
+    user_id = users.is_logged_in()
     print("cuisines GET method")
     list = restaurants.get_cuisines()
     if is_admin:
-        return render_template("cuisines.html", is_admin=is_admin, cuisines=list)
+        return render_template("cuisines.html", is_admin=is_admin, user_id=user_id, cuisines=list)
     else:
         return render_template("error.html", message="You do not have rights to view this page")
     
