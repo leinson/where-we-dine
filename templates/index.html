@@ -14,9 +14,9 @@
 {% if session.username %}
     <a href="/user/{{ user_id }}">Profile page </a>
     <a href="/logout"> Log out</a>
+    <p>Welcome {{ session.username }}!
 {% else %}
     <a href="/login">Log in</a>
-<p>Welcome {{ session.username }}!
 {% endif %}
 </nav>
 <h2>the restaurants</h2>
@@ -27,8 +27,9 @@
     {% endif %}
 {% endif %}
 <br>
+<p>Sort by: </p>
 <form action="/sort_by_cuisine" method=POST>
-    <label for="cuisine">Choose a cuisine:</label>
+    <label for="cuisine">Cuisine:</label>
     <select name="cuisine_id" id="cuisine_id">
     {% for cuisine in cuisines %}
         <option value={{ cuisine.id }}>{{ cuisine.cuisine }}</option>
@@ -37,6 +38,16 @@
     <input type="submit" value="Search">
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 </form>
+<form action="/sort_by_score" method=POST>
+    <label for="score">Rating:</label>
+    <input type="radio" id="score" name="score" value="Low" required>
+    <label for="score">Low</label>
+    <input type="radio" id="score" name="score" value="High" required>
+    <label for="score">High</label>
+    <input type="submit" value="Search">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+</form>
+<a href="/">All restaurants</a><br>
 {{ cuisine_name }}
 {% for restaurant in restaurants %}
     <hr>

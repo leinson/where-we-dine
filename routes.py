@@ -180,3 +180,17 @@ def sort_by_cuisine():
     return render_template("index.html", count=len(list), restaurants=list, cuisines=cuisines, cuisine_name=cuisine_name, is_admin=is_admin, user_id=user_id)
    
 
+@app.route("/sort_by_score", methods = ["POST"])
+def sort_by_score():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
+    score = request.form.get("score", "")
+    user_id = users.is_logged_in()
+    is_admin = users.is_admin()
+    list = restaurants.sort_by_score(score)
+    if list == False:
+        return redirect("/")
+    cuisines = restaurants.get_cuisines()
+    return render_template("index.html", count=len(list), restaurants=list, cuisines=cuisines, is_admin=is_admin, user_id=user_id)
+   
+

@@ -11,6 +11,11 @@
   
 - Refresh the page if you get "Internal server error" when you open the link
 - If fly.io for some other reason does not work, you can test the application locally on your computer. Instructions are at the bottom of the README.
+### Features
+
+- Eliminate vulnerabilities (csrf)
+- A user can search for a restaurant based on cuisine
+- A user can organize the list of restaurants based on the review scores
 
 ### Välipalautus 3 :
 
@@ -47,29 +52,26 @@
 
 ## To Do
 
-### Features
-- Admin can:
-    - Can edit all info about a restaurant afterwards
-
 ### Page and account management
-- Admin right to remove anyone’s account and any restaurant 
+- Admin right to remove any restaurant 
 
 ### Organizing and search features 
-- A user can search for a restaurant based on cuisine, price or restaurant name
-- A user can organize the list of restaurants based on the review scores 
+- A user can search for a restaurant based on price or restaurant name
+
  
 ### Other stuff
-- Make visually pleasing, add own CSS or Bootstrap library
-- Eliminate vulnerabilities (csrf)
+- Make visually pleasing, add own CSS or Bootstrap library (in progress)
 - Move cuisine functions to own file
+- check pylint
 
 
-### “Nice to have’s”
+### Future development ideas
 - A user can add a restaurant without info & tags 
     - An admin can later "verify" the restaurant, and add the info & tags 
 - A user can edit their own review after it is posted 
 - A user can do a list of restaurants they want to visit 
 - A user can add pictures to their review
+- Admin can edit restaurant info
 
 ## How to run on your own computer
 - Clone repository to your computer

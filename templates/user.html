@@ -11,7 +11,7 @@
 <h1>where we dine</h1>
 </div>
 
-<h2>User page</h2>
+<h2>Profile - {{ session.username }}</h2>
 
 <script LANGUAGE="JavaScript">
     <!--
@@ -26,7 +26,6 @@
     // -->
 </script>
 
-<p>You are logged in as {{ session.username }}.</p><br>  
 <p>Your reviews:<br>
 </p>
 {% for review in reviews %}

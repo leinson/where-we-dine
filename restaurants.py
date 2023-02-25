@@ -5,12 +5,6 @@ def get_restaurant_info(id):
     result = db.session.execute(sql, {"id":id})
     return result.fetchone()
 
-def get_restaurants_cuisines(id):
-    restaurant_id = id
-    sql = "SELECT C.cuisine FROM cuisines C, restaurant_cuisines RC WHERE RC.cuisine_id=C.id AND RC.restaurant_id=:restaurant_id"
-    result = db.session.execute(sql, {"restaurant_id":restaurant_id})
-    return result.fetchall()
-
 def get_restaurants():
     sql = "SELECT RE.id, RE.name, COALESCE(round(AVG(RV.score)::numeric,2),'0') FROM restaurants RE LEFT JOIN reviews RV ON RV.restaurant_id=RE.id GROUP BY RE.name, RE.id"
     result = db.session.execute(sql)
@@ -69,6 +63,12 @@ def add_restaurant_cuisines(name, cuisines):
                 "cuisine_id":cuisine_id})
     return True
 
+def get_restaurants_cuisines(id):
+    restaurant_id = id
+    sql = "SELECT C.cuisine FROM cuisines C, restaurant_cuisines RC WHERE RC.cuisine_id=C.id AND RC.restaurant_id=:restaurant_id"
+    result = db.session.execute(sql, {"restaurant_id":restaurant_id})
+    return result.fetchall()
+
 def get_cuisines():
     sql = "SELECT id, cuisine FROM cuisines"
     result = db.session.execute(sql)
@@ -88,14 +88,6 @@ def delete_cuisine(id):
     db.session.commit()
     return True
 
-def get_one_average_score(id):
-    #For the restaurants own reviews page
-    sql = "SELECT COALESCE(round(AVG(score)::numeric,2),'0') FROM reviews WHERE restaurant_id=:id"
-    result = db.session.execute(sql, {"restaurant_id":id})
-    result = result.fetchone()
-    result = "{:.2f}".format(result[0])
-    return result
-
 def sort_by_cuisine(id):
     sql = "SELECT RE.id, RE.name, COALESCE(round(AVG(RV.score)::numeric,2),'0') FROM restaurants RE, reviews RV, restaurant_cuisines RC WHERE RV.restaurant_id=RE.id AND RC.restaurant_id=RV.restaurant_id AND RC.cuisine_id=:id GROUP BY RE.name, RE.id"
     result = db.session.execute(sql, {"id":id})
@@ -106,3 +98,23 @@ def get_cuisine(id):
     result = db.session.execute(sql, {"id":id})
     result = result.fetchone()
     return result[0]
+
+def get_one_average_score(id):
+    #For the restaurants own reviews page
+    sql = "SELECT COALESCE(round(AVG(score)::numeric,2),'0') FROM reviews WHERE restaurant_id=:id"
+    result = db.session.execute(sql, {"restaurant_id":id})
+    result = result.fetchone()
+    result = "{:.2f}".format(result[0])
+    return result
+
+def sort_by_score(score):
+    print(score)
+    if score == "High":
+        sql = "SELECT RE.id, RE.name, COALESCE(round(AVG(RV.score)::numeric,2),'0') FROM restaurants RE LEFT JOIN reviews RV ON RV.restaurant_id=RE.id GROUP BY RE.name, RE.id ORDER BY COALESCE(round(AVG(RV.score)::numeric,2),'0') DESC"
+    elif score == "Low":
+        sql = "SELECT RE.id, RE.name, COALESCE(round(AVG(RV.score)::numeric,2),'0') FROM restaurants RE LEFT JOIN reviews RV ON RV.restaurant_id=RE.id GROUP BY RE.name, RE.id ORDER BY COALESCE(round(AVG(RV.score)::numeric,2),'0')"
+    else:
+        return False
+    result = db.session.execute(sql)
+    return result.fetchall()
+    
