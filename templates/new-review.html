@@ -5,42 +5,40 @@
         <link rel="stylesheet" href="/static/style.css">
         <title>where we dine</title>
     </head>
-<body>
-<div class="header">
-    <img src="/static/logo.png" alt="header">
-</div>
-<nav>
-    <a href="/">Home</a>
-    {% if session.username %}
-        <a href="/user/{{ user_id }}">Profile</a>
-        <a href="/logout"> Log out</a>
-    {% else %}
-        <a href="/login">Log in</a>
-    {% endif %}
-    
-</nav>
-<h2>ADD REVIEW</h2>
-<div class="lists">
-{% if session.username %}
-<form action="/new-review/{{ restaurant.id }}" method="POST">
-    <p>Write your review: </p>
-    <textarea name="review" rows="6" cols="50" maxlength="2000" required></textarea>
-    <p>Score:
-        <input type="number" name="score" min="1" max="10" required>
-    </p>
-    <p>Date of visit: 
-        <input type="date" name="visited" min="1900-01-01" required>
-    </p>
-
-    <input type="submit" value="Submit review">
-    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-</form>
-</div>
-{% else %}
-    <p><a href="/login">Log in</a> to submit a review. </p>
-{% endif %}
-<div class="footer">
-    <p>Restaurant review app - Database application study project at University of Helsinki</p>
-</div>
-</body>
+    <body>
+        <div class="header">
+            <img src="/static/logo.png" alt="header">
+        </div>
+        <nav>
+            <a href="/">Home</a>
+            {% if session.username %}
+                <a href="/user/{{ user_id }}">Profile</a>
+                <a href="/logout"> Log out</a>
+            {% else %}
+                <a href="/login">Log in</a>
+            {% endif %}
+        </nav>
+        <h2>ADD REVIEW</h2>
+        <div class="lists">
+            {% if session.username %}
+                <form action="/new-review/{{ restaurant.id }}" method="POST">
+                    <p>Write your review: </p>
+                    <textarea name="review" rows="6" cols="50" maxlength="2000" required></textarea>
+                    <p>Score:
+                        <input type="number" name="score" min="1" max="10" required>
+                    </p>
+                    <p>Date of visit: 
+                        <input type="date" name="visited" min="1900-01-01" required>
+                    </p>
+                    <input type="submit" value="Submit review">
+                    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+                </form>
+            {% else %}
+                <p><a href="/login">Log in</a> to submit a review. </p>
+            {% endif %}
+        </div>
+        <div class="footer">
+            <p>Restaurant review app - Database application study project at University of Helsinki</p>
+        </div>
+    </body>
 </html>

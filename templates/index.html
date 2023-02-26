@@ -5,85 +5,83 @@
         <link rel="stylesheet" href="/static/style.css">
         <title>where we dine</title>
     </head>
-<body>
-<div class="header">
-    <img src="/static/logo.png" alt="header">
-</div>
-
-<nav>
-{% if session.username %}
-    Welcome {{ session.username }}!
-    <a href="/user/{{ user_id }}">Profile</a>
-    <a href="/logout"> Log out</a>
-{% else %}
-    <a href="/login">Log in</a>
-{% endif %}
-</nav>
-
-<h2>THE RESTAURANTS</h2>
-<div class="lists">
-{% if session.username %}
-    {% if is_admin == True %}
-        <p>Admin tools:
-        <a href="/new-restaurant">Add restaurants</a>
-        <a href="/cuisines">Add cuisines</a></p>
-    {% endif %}
-{% endif %}
-<br>
-<h3>SORT RESTAURANTS</h3>
-<form action="/sort_by_cuisine" method=POST>
-    <label for="cuisine">Cuisine:</label>
-    <select name="cuisine_id" id="cuisine_id">
-    {% for cuisine in cuisines %}
-        <option value={{ cuisine.id }}>{{ cuisine.cuisine }}</option>
-    {% endfor %}
-    </select>
-    <input type="submit" value="Search">
-    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-</form>
-<form action="/sort_by_score" method=POST>
-    <label for="score">Rating:</label>
-    <input type="radio" id="score" name="score" value="Low" required>
-    <label for="score">Low</label>
-    <input type="radio" id="score" name="score" value="High" required>
-    <label for="score">High</label>
-    <input type="submit" value="Search">
-    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-</form>
-<form action="/sort_by_price" method=POST>
-    <label for="price">Pricing:</label>
-    <input type="radio" id="price" name="price" value="Low" required>
-    <label for="price">Low</label>
-    <input type="radio" id="price" name="price" value="High" required>
-    <label for="price">High</label>
-    <input type="submit" value="Search">
-    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-</form>
-</p>
-<a href="/">All restaurants</a><br>
-</div>
-<p>{{ cuisine_name }}</p>
-{% if count == 1 %}
-    <p>{{ count }} search result</p><br>
-{% else %}
-    <p>{{ count }} search results</p><br>
-{% endif %}
-<div class="lists">
-{% for restaurant in restaurants %}
-    <hr>
-    <b>{{ restaurant.name }}</b><br>
-    <br>
-    {% if restaurant.coalesce == 0 %}
-        <p>No reviews</p>
-    {% else %}
-        <p>Rated: {{ restaurant.coalesce }}/10.00</p> 
-    {% endif %}
-    <a href="/reviews/{{ restaurant.id }}">View reviews</a>
-    <hr>
-{% endfor %}
-</div>
-<div class="footer">
-    <p>Restaurant review app - Database application study project at University of Helsinki</p>
-</div>
-</body>
+    <body>
+        <div class="header">
+            <img src="/static/logo.png" alt="header">
+        </div>
+        <nav>
+            {% if session.username %}
+                Welcome {{ session.username }}!
+                <a href="/user/{{ user_id }}">Profile</a>
+                <a href="/logout"> Log out</a>
+            {% else %}
+                <a href="/login">Log in</a>
+            {% endif %}
+        </nav>
+        <h2>THE RESTAURANTS</h2>
+        <div class="lists">
+            {% if session.username %}
+                {% if is_admin == True %}
+                    <p>Admin tools:
+                    <a href="/new-restaurant">Add restaurants</a>
+                    <a href="/cuisines">Add cuisines</a></p>
+                {% endif %}
+            {% endif %}
+            <br>
+            <h3>SORT RESTAURANTS</h3>
+            <form action="/sort_by_cuisine" method=POST>
+                <label for="cuisine">Cuisine:</label>
+                <select name="cuisine_id" id="cuisine_id">
+                    {% for cuisine in cuisines %}
+                        <option value={{ cuisine.id }}>{{ cuisine.cuisine }}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="Search">
+                <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+            </form>
+            <form action="/sort_by_score" method=POST>
+                <label for="score">Rating:</label>
+                <input type="radio" id="score" name="score" value="Low" required>
+                <label for="score">Low</label>
+                <input type="radio" id="score" name="score" value="High" required>
+                <label for="score">High</label>
+                <input type="submit" value="Search">
+                <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+            </form>
+            <form action="/sort_by_price" method=POST>
+                <label for="price">Pricing:</label>
+                <input type="radio" id="price" name="price" value="Low" required>
+                <label for="price">Low</label>
+                <input type="radio" id="price" name="price" value="High" required>
+                <label for="price">High</label>
+                <input type="submit" value="Search">
+                <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+            </form>
+            <br>
+            <a href="/">All restaurants</a><br>
+        </div>
+        <p>{{ cuisine_name }}</p>
+        {% if count == 1 %}
+            <p>{{ count }} search result</p><br>
+        {% else %}
+            <p>{{ count }} search results</p><br>
+        {% endif %}
+        <div class="lists">
+            {% for restaurant in restaurants %}
+                <hr>
+                <b>{{ restaurant.name }}</b><br>
+                <br>
+                {% if restaurant.coalesce == 0 %}
+                    <p>No reviews</p>
+                {% else %}
+                    <p>Rated: {{ restaurant.coalesce }}/10.00</p> 
+                {% endif %}
+                <a href="/reviews/{{ restaurant.id }}">View reviews</a>
+                <hr>
+            {% endfor %}
+        </div>
+        <div class="footer">
+            <p>Restaurant review app - Database application study project at University of Helsinki</p>
+        </div>
+    </body>
 </html>

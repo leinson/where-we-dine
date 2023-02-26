@@ -5,80 +5,78 @@
         <link rel="stylesheet" href="/static/style.css">
         <title>where we dine</title>
     </head>
-<body>
-<div class="header">
-    <img src="/static/logo.png" alt="header">
-</div>
-<nav>
-    <a href="/">Home</a>
-    {% if session.username %}
-        <a href="/user/{{ user_id }}">Profile</a>
-        <a href="/logout"> Log out</a>
-    {% else %}
-        <a href="/login">Log in</a>
-    {% endif %}
-<br>
-</nav>
-<div class="restaurant">
-<h2>{{ restaurant.name }}</h2>
-<p>
-    {{ restaurant.info }}<br>
-    <br>
-    {{ restaurant.city }}<br>
-    <br>
-    Price: {{ restaurant.price }}<br>
-    <br>
-    {% if restaurant.web_link != '' %}
-        <a href="{{ restaurant.web_link }}">Restaurant's website</a>
-    {% endif %}
-</p>
-
-Cuisine: - 
-{% for cuisine in cuisines %}
-    {{ cuisine.cuisine }} - 
-{% endfor %}
-</div>
-<p>
-<h2>the reviews</h2>
-<div class="accent">
-{% if session.username %}
-    
-    <a href="/new-review/{{ restaurant.id }}">Write a review here</a><br>
-    {% else %}
-    <a href="/login">Log in</a> to write a review<br>
-{% endif %}
-</div>
-{% if count == 1 %}
-    <p>This restaurant has {{ count }} review</p>
-{% else %}
-    <p>This restaurant has {{ count }} reviews</p>
-{% endif %}
-<br>
-{% for review in reviews %}
-    <div class="lists">
-    <hr>
-    Review by {{ review.username }}<br>
-    <br>
-    Review: {{ review.review }}<br>
-    <br>
-    Score: {{ review.score }}/10 <br>
-    <br>
-    Date of visit: {{ review.visited }}<br>
-    <br>
-    Review submitted at {{ review.sent_at }}<br>
-    <br>
-    {% if is_admin == True %}
-    <form action="/delete_review/{{ review.id }}" method=POST>
-        <input type="submit" value="Delete review">
-        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-    </form>
-    {% endif %}
-    <hr>
-    </div>
-{% endfor %}
-
-<div class="footer">
-    <p>Restaurant review app - Database application study project at University of Helsinki</p>
-</div>
-</body>
+    <body>
+        <div class="header">
+            <img src="/static/logo.png" alt="header">
+        </div>
+        <nav>
+            <a href="/">Home</a>
+            {% if session.username %}
+                <a href="/user/{{ user_id }}">Profile</a>
+                <a href="/logout"> Log out</a>
+            {% else %}
+                <a href="/login">Log in</a>
+            {% endif %}
+        <br>
+        </nav>
+        <div class="restaurant">
+            <h2>{{ restaurant.name }}</h2>
+            <p>
+                {{ restaurant.info }}<br>
+                <br>
+                {{ restaurant.city }}<br>
+                <br>
+                Price: {{ restaurant.price }}<br>
+                <br>
+                {% if restaurant.web_link != '' %}
+                    <a href="{{ restaurant.web_link }}" target="_blank">Restaurant's website</a>
+                {% endif %}
+            </p>
+            Cuisine: - 
+            {% for cuisine in cuisines %}
+                {{ cuisine.cuisine }} - 
+            {% endfor %}
+        </div>
+        <p>
+        <h2>THE REVIEWS</h2>
+        <div class="accent">
+            {% if session.username %}
+                <a href="/new-review/{{ restaurant.id }}">Write a review here</a><br>
+                {% else %}
+                <a href="/login">Log in</a> to write a review<br>
+            {% endif %}
+        </div>
+        {% if count == 1 %}
+            <p>This restaurant has {{ count }} review</p>
+        {% else %}
+            <p>This restaurant has {{ count }} reviews</p>
+        {% endif %}
+        <br>
+        {% for review in reviews %}
+            <div class="lists">
+                <hr>
+                <p>
+                    Review by {{ review.username }}<br>
+                    <br>
+                    Review: {{ review.review }}<br>
+                    <br>
+                    Score: {{ review.score }}/10 <br>
+                    <br>
+                    Date of visit: {{ review.visited }}<br>
+                    <br>
+                    Review submitted at {{ review.sent_at }}<br>
+                </p>
+                {% if is_admin == True %}
+                <form action="/delete_review/{{ review.id }}" method=POST>
+                    <input type="submit" value="Delete review">
+                    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+                </form>
+                {% endif %}
+                <hr>
+            </div>
+        {% endfor %}
+        <div class="footer">
+            <p>Restaurant review app - Database application study project at University of Helsinki</p>
+        </div>
+    </body>
 </html>

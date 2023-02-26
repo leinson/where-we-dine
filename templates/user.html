@@ -4,66 +4,64 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/static/style.css">
         <title>where we dine</title>
+        <script LANGUAGE="JavaScript">
+            <!--
+            function confirmSubmit()
+            {
+            var agree=confirm("Do you want to delete?");
+            if (agree)
+            return true ;
+            else
+            return false ;
+            }
+            // -->
+        </script>
     </head>
-<body>
-<div class="header">
-    <img src="/static/logo.png" alt="header">
-</div>
-<nav>
-    <a href="/">Home</a>
-    {% if session.username %}
-        <a href="/logout"> Log out</a>
-    {% else %}
-        <a href="/login">Log in</a>
-    {% endif %}
-    
-</nav>
-<h1>{{ session.username }}</h1>
-
-<script LANGUAGE="JavaScript">
-    <!--
-    function confirmSubmit()
-    {
-    var agree=confirm("Do you want to delete?");
-    if (agree)
-     return true ;
-    else
-     return false ;
-    }
-    // -->
-</script>
-
-<h2>YOUR REVIEWS</h2>
-<p>You have written {{ count }} reviews</p> 
-<div class="lists">
-{% for review in reviews %}
-    <hr>
-    Restaurant: {{ review.name }}<br>
-    <br>
-    Review: {{ review.review }}<br>
-    <br>
-    Score: {{ review.score }}/10 <br>
-    <br>
-    Date of visit: {{ review.visited }}<br>
-    <br>
-    Review submitted at {{ review.sent_at }}<br>
-    <br>
-    <form action="/delete_review/{{ review.id }}" method=POST>
-        <input type="submit" value="Delete review" name="delete" onClick="return confirmSubmit()">
-        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-    </form>
-    <hr>
-{% endfor %}
-</div>
-<br>
-{% if is_admin == False %}
-    <form action="/delete_user/{{ user_id }}" method=POST>
-        <input type="submit" value="Delete user" name="delete" onClick="return confirmSubmit()">
-        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-    </form>
-{% endif %}
-<div class="footer">
-    <p>Restaurant review app - Database application study project at University of Helsinki</p>
-</div>
-</body>
+    <body>
+        <div class="header">
+            <img src="/static/logo.png" alt="header">
+        </div>
+        <nav>
+            <a href="/">Home</a>
+            {% if session.username %}
+                <a href="/logout"> Log out</a>
+            {% else %}
+                <a href="/login">Log in</a>
+            {% endif %} 
+        </nav>
+        <h1>{{ session.username }}</h1>
+        <h2>YOUR REVIEWS</h2>
+        <p>You have written {{ count }} reviews</p> 
+        <div class="lists">
+            {% for review in reviews %}
+                <hr>
+                <p>
+                    Restaurant: {{ review.name }}<br>
+                    <br>
+                    Review: {{ review.review }}<br>
+                    <br>
+                    Score: {{ review.score }}/10 <br>
+                    <br>
+                    Date of visit: {{ review.visited }}<br>
+                    <br>
+                    Review submitted at {{ review.sent_at }}<br>
+                </p>
+                <form action="/delete_review/{{ review.id }}" method=POST>
+                    <input type="submit" value="Delete review" name="delete" onClick="return confirmSubmit()">
+                    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+                </form>
+                <hr>
+            {% endfor %}
+        </div>
+        <br>
+        {% if is_admin == False %}
+            <form action="/delete_user/{{ user_id }}" method=POST>
+                <input type="submit" value="Delete user" name="delete" onClick="return confirmSubmit()">
+                <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+            </form>
+        {% endif %}
+        <div class="footer">
+            <p>Restaurant review app - Database application study project at University of Helsinki</p>
+        </div>
+    </body>
 </html>

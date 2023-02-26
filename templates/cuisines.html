@@ -5,37 +5,39 @@
         <link rel="stylesheet" href="/static/style.css">
         <title>where we dine</title>
     </head>
-<body>
-<div class="header">
-    <img src="/static/logo.png" alt="header">
-</div>
-<nav>
-    <a href="/">Home</a>
-    {% if session.username %}
-        <a href="/user/{{ user_id }}">Profile</a>
-        <a href="/logout"> Log out</a>
-    {% else %}
-        <a href="/login">Log in</a>
-    {% endif %} 
-</nav>
-<h2>CUISINES</h2>
-    <form action="/cuisines/add" method="POST">
-        <label for="cuisine">Add cuisine: </label>
-        <input type="text" name="cuisine" minlength="1" maxlength="30" required>
-        <input type="submit" value="Add cuisine">
-        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-    </form>
-<p>Existing cuisines:</p>
-{% for cuisine in cuisines %}
-    
-    <form action="/cuisines/delete/{{ cuisine.id }}" method=POST>
-        - <label for="cuisine">{{ cuisine.cuisine }}</label>
-        <input type="submit" value="Delete" name="delete">
-    </form>
-{% endfor %}
-<br>
-<div class="footer">
-    <p>Restaurant review app - Database application study project at University of Helsinki</p>
-</div>
-</body>
+    <body>
+        <div class="header">
+            <img src="/static/logo.png" alt="header">
+        </div>
+        <nav>
+            <a href="/">Home</a>
+            {% if session.username %}
+                <a href="/user/{{ user_id }}">Profile</a>
+                <a href="/logout"> Log out</a>
+            {% else %}
+                <a href="/login">Log in</a>
+            {% endif %} 
+        </nav>
+        <h2>CUISINES</h2>
+            <form action="/cuisines/add" method="POST">
+                <label for="cuisine">Add cuisine: </label>
+                <input type="text" name="cuisine" minlength="1" maxlength="30" required>
+                <input type="submit" value="Add cuisine">
+                <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+            </form>
+        <h3>Existing cuisines</h3>
+        <div class="lists">
+            {% for cuisine in cuisines %}
+                <form action="/cuisines/delete/{{ cuisine.id }}" method=POST>
+                    <label for="cuisine">{{ cuisine.cuisine }}</label>
+                    <input type="submit" value="Delete" name="delete">
+                    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+                </form>
+            {% endfor %}
+        </div>
+        <br>
+        <div class="footer">
+            <p>Restaurant review app - Database application study project at University of Helsinki</p>
+        </div>
+    </body>
 </html>

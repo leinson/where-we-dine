@@ -5,59 +5,58 @@
         <link rel="stylesheet" href="/static/style.css">
         <title>where we dine</title>
     </head>
-<body>
-<div class="header">
-    <img src="/static/logo.png" alt="header">
-</div>
-<nav>
-    <a href="/">Home</a>
-    {% if session.username %}
-        <a href="/user/{{ user_id }}">Profile</a>
-        <a href="/logout"> Log out</a>
-    {% else %}
-        <a href="/login">Log in</a>
-    {% endif %}
-    
-</nav>
-<h2>ADD RESTAURANT</h2><br>
-<div class="lists">
-    {% if is_admin == True %}
-    <form action="/new-restaurant" method="POST">
-        <p>Name of restaurant: <br>
-            <input type="text" name="name" minlength="1" maxlength="30" required>
-        </p>
-        <p> Restaurant info: <br>
-            <textarea name="info" rows="6" cols="50" maxlength="2000" required></textarea>
-        </p>
-        <p>Restaurant's web address: <br>
-            <input type="text" name="web_link" minlength="6">
-        </p>
-        <p>City: <br>
-            <input type="text" name="city" required>
-        </p>
-        <p>Price: </p>
-            <input type="radio" id="price" name="price" value="€" required>
-            <label for="price">€</label>
-            <input type="radio" id="price" name="price" value="€€" required>
-            <label for="price">€€</label>
-            <input type="radio" id="price" name="price" value="€€€" required>
-            <label for="price">€€€</label>
-        <p>Choose cuisines:</p>
-        {% for cuisine in cuisines %}
-        <input type="checkbox" id="cuisine" name="cuisine" value={{ cuisine.cuisine }}>
-        <label for="cuisine"> {{ cuisine.cuisine }}</label>
-        {% endfor %}
-        <br>
-        <br>
-        <input type="submit" value="Submit restaurant">
-        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-    </form><br>
-</div>
-{% else %}
-    <p>You do not have rights to view this page</p>
-{% endif %}
-<div class="footer">
-    <p>Restaurant review app - Database application study project at University of Helsinki</p>
-</div>
-</body>
+    <body>
+        <div class="header">
+            <img src="/static/logo.png" alt="header">
+        </div>
+        <nav>
+            <a href="/">Home</a>
+            {% if session.username %}
+                <a href="/user/{{ user_id }}">Profile</a>
+                <a href="/logout"> Log out</a>
+            {% else %}
+                <a href="/login">Log in</a>
+            {% endif %}  
+        </nav>
+        <h2>ADD RESTAURANT</h2><br>
+        <div class="lists">
+            {% if is_admin == True %}
+            <form action="/new-restaurant" method="POST">
+                <p>Name of restaurant: <br>
+                    <input type="text" name="name" minlength="1" maxlength="30" required>
+                </p>
+                <p> Restaurant info: <br>
+                    <textarea name="info" rows="6" cols="50" maxlength="2000" required></textarea>
+                </p>
+                <p>Restaurant's web address: <br>
+                    <input type="text" name="web_link" minlength="6">
+                </p>
+                <p>City: <br>
+                    <input type="text" name="city" required>
+                </p>
+                <p>Price: </p>
+                    <input type="radio" id="price" name="price" value="€" required>
+                    <label for="price">€</label>
+                    <input type="radio" id="price" name="price" value="€€" required>
+                    <label for="price">€€</label>
+                    <input type="radio" id="price" name="price" value="€€€" required>
+                    <label for="price">€€€</label>
+                <p>Choose cuisines:</p>
+                {% for cuisine in cuisines %}
+                    <input type="checkbox" id="cuisine" name="cuisine" value={{ cuisine.cuisine }}>
+                    <label for="cuisine"> {{ cuisine.cuisine }}</label>
+                {% endfor %}
+                <br>
+                <br>
+                <input type="submit" value="Submit restaurant">
+                <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+            </form><br>
+        </div>
+            {% else %}
+                <p>You do not have rights to view this page</p>
+            {% endif %}
+        <div class="footer">
+            <p>Restaurant review app - Database application study project at University of Helsinki</p>
+        </div>
+    </body>
 </html>

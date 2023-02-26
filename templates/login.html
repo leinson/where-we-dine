@@ -5,25 +5,29 @@
         <link rel="stylesheet" href="/static/style.css">
         <title>where we dine</title>
     </head>  
-<body>
-<div class="header">
-    <img src="/static/logo.png" alt="header">
-</div>
-<nav>
-    <a href="/">Home</a>
-</nav>
-<h2>LOG IN</h2>
-<div class="lists">
-<form action="/login" method="post">
-    <p>Username: <br> <input type="text" name="username" required></p>
-    <p>Password: <br> <input type="password" name="password" required></p>
-    <input type="submit" value="Log in">
-</form>
-</div><br>
-Don't have an account? <a href="/register">Create one here</a><br>
-<br>
-<div class="footer">
-    <p>Restaurant review app - Database application study project at University of Helsinki</p>
-</div>
-</body>
+    <body>
+        <div class="header">
+            <img src="/static/logo.png" alt="header">
+        </div>
+        <nav>
+            <a href="/">Home</a>
+        </nav>
+        <h2>LOG IN</h2>
+        {% if session.username %}
+            <p>You are logged in and have already registered.</p>
+        {% else %}
+        <div class="lists">
+            <form action="/login" method="post">
+                <p>Username: <br> <input type="text" name="username" required></p>
+                <p>Password: <br> <input type="password" name="password" required></p>
+                <input type="submit" value="Log in">
+            </form>
+        </div><br>
+        <p>Don't have an account? <a href="/register">Create one here</a></p>
+        {% endif %}
+        <br>
+        <div class="footer">
+            <p>Restaurant review app - Database application study project at University of Helsinki</p>
+        </div>
+    </body>
 </html>

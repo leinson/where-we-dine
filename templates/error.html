@@ -5,27 +5,24 @@
         <link rel="stylesheet" href="/static/style.css">
         <title>where we dine</title>
     </head>
-<body>
-<div class="header">
-    <img src="/static/logo.png" alt="header">
-</div>
-
-<nav>
-{% if session.username %}
-    Welcome {{ session.username }}!
-    <a href="/user/{{ user_id }}">Profile</a>
-    <a href="/logout"> Log out</a>
-{% else %}
-    <a href="/login">Log in</a>
-{% endif %}
-</nav>
-
-<p>Error: {{ message }}<br></p>
-<br>
-<a href="/">Back to front page</a>
-
-<div class="footer">
-    <p>Restaurant review app - Database application study project at University of Helsinki</p>
-</div>
-</body>
+    <body>
+        <div class="header">
+            <img src="/static/logo.png" alt="header">
+        </div>
+        <nav>
+            {% if session.username %}
+                Welcome {{ session.username }}!
+                <a href="/user/{{ user_id }}">Profile</a>
+                <a href="/logout"> Log out</a>
+            {% else %}
+                <a href="/login">Log in</a>
+            {% endif %}
+        </nav>
+        <p>Error: {{ message }}<br></p>
+        <br>
+        <a href="/">Back to front page</a>
+        <div class="footer">
+            <p>Restaurant review app - Database application study project at University of Helsinki</p>
+        </div>
+    </body>
 </html>
