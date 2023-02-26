@@ -30,7 +30,6 @@ def add_restaurant(name, info, web_link, city, price, is_admin, cuisines):
     return validate
 
 def validate_restaurant(name, info, city, price):
-    print("validate restaurant")
     message = True
     if len(name) < 1 or len(name) > 100:
         message = "Incorrect input in field: name"
@@ -98,16 +97,7 @@ def get_cuisine(id):
     result = result.fetchone()
     return result[0]
 
-def get_one_average_score(id):
-    #For the restaurants own reviews page
-    sql = "SELECT COALESCE(round(AVG(score)::numeric,2),'0') FROM reviews WHERE restaurant_id=:id"
-    result = db.session.execute(sql, {"restaurant_id":id})
-    result = result.fetchone()
-    result = "{:.2f}".format(result[0])
-    return result
-
 def sort_by_score(score):
-    print(score)
     if score == "High":
         sql = "SELECT RE.id, RE.name, COALESCE(round(AVG(RV.score)::numeric,2),'0') FROM restaurants RE LEFT JOIN reviews RV ON RV.restaurant_id=RE.id GROUP BY RE.name, RE.id ORDER BY COALESCE(round(AVG(RV.score)::numeric,2),'0') DESC"
     elif score == "Low":
@@ -117,9 +107,7 @@ def sort_by_score(score):
     result = db.session.execute(sql)
     return result.fetchall()
 
-
 def sort_by_price(price):
-    print(price)
     if price == "High":
         sql = "SELECT RE.id, RE.name, COALESCE(round(AVG(RV.score)::numeric,2),'0'), RE.price FROM restaurants RE LEFT JOIN reviews RV ON RV.restaurant_id=RE.id GROUP BY RE.name, RE.id ORDER BY RE.price DESC NULLS LAST"
     elif price == "Low":

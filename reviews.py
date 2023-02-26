@@ -10,7 +10,6 @@ def get_reviews(id):
 def submit_review(review, score, visited, restaurant_id, username):
     user_id = users.get_user_id(username)
     user_id = user_id[0]
-    print(user_id, review, score, visited, restaurant_id)
     validated = validate_new_review(review, score, visited, user_id)
     if validated == True:
         sql = "INSERT INTO reviews (restaurant_id, user_id, review, score, visited, sent_at) VALUES (:restaurant_id, :user_id, :review, :score, :visited, LOCALTIMESTAMP(0))"
@@ -48,7 +47,6 @@ def validate_date(visited):
     try:
         datetime.datetime.strptime(visited, "%Y-%m-%d")
     except ValueError:
-        print("Date value error")
         return False
     if int(visited[0:4]) < 1900:
         return False

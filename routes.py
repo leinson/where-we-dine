@@ -44,7 +44,6 @@ def register():
 
 @app.route("/user/<int:id>")
 def user(id):
-    print("user page id: ", id)
     allow = False
     is_admin = users.is_admin()
     if is_admin:
@@ -54,7 +53,6 @@ def user(id):
     if not allow:
         return render_template("error.html", message="You do not have rights to view this page")
     list = users.get_users_reviews(id)
-    print(list)
     return render_template("user.html", is_admin=is_admin, user_id=id, count=len(list), reviews=list)
 
 @app.route("/reviews/<int:id>")
@@ -90,7 +88,6 @@ def new_restaurant():
     if request.method == "GET":
         is_admin = users.is_admin()
         user_id = users.is_logged_in()
-        print("new restaurant GET method")
         list = restaurants.get_cuisines()
         if is_admin:
             return render_template("new-restaurant.html", is_admin=is_admin, user_id=user_id, cuisines=list)
@@ -106,7 +103,6 @@ def new_restaurant():
             city = request.form.get("city", "")
             price = request.form.get("price", "")
             cuisines = request.form.getlist("cuisine")
-            print("new restaurant - POST values:", name, info, web_link, city, price, is_admin, cuisines)
             submit = restaurants.add_restaurant(name, info, web_link, city, price, is_admin, cuisines)
             if submit == True:
                 return redirect("/")
@@ -136,7 +132,6 @@ def delete_user(id):
 def cuisines():
     is_admin = users.is_admin()
     user_id = users.is_logged_in()
-    print("cuisines GET method")
     list = restaurants.get_cuisines()
     if is_admin:
         return render_template("cuisines.html", is_admin=is_admin, user_id=user_id, cuisines=list)

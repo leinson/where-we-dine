@@ -50,7 +50,6 @@ def get_user_id(username):
 def is_admin():
     user = username()
     if user == 0:
-        print("user 0 in is_admin, not logged in")
         return False
     sql = "SELECT admin FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":user})
@@ -61,11 +60,9 @@ def is_admin():
 
 def is_logged_in():
     is_logged = username()
-    print("is_logged: ", is_logged)
     if is_logged != 0:
         is_logged = get_user_id(is_logged)
         is_logged = is_logged[0]
-        print("user_id: ", is_logged)
     return is_logged
 
 def get_users_reviews(id):
