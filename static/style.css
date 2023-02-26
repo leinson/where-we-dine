@@ -1,5 +1,3 @@
-
-
 body {
     background:#FEF0D8;
     margin: auto;
@@ -8,13 +6,16 @@ body {
     font-weight: 600;
     word-wrap: break-word;
 }
+
 h2, h3 {
     color:#B800A5;
 }
+
 h1 {
     color:#B800A5;
     text-align: center;
 }
+
 nav {
     padding: 2%;
     text-align: right;
@@ -58,6 +59,7 @@ input[type=text] {
     border-radius: 4px;
     border-width: 1px;
 }
+
 input[type=password] {
     width: 50%;
     padding: 5px 10px;
@@ -65,6 +67,7 @@ input[type=password] {
     border-radius: 4px;
     border-width: 1px;
 }
+
 textarea {
     width: 50%;
     padding: 5px 10px;
@@ -79,53 +82,16 @@ select {
     font-size:medium;
     background:white;
 }
-.lists {
-    background:#fff8fe;
-    color:rgb(31, 30, 30);
-    position: relative;
-    padding: 2%;
-    width: 100%;
-    height: auto;
-    box-shadow: black 0 10px 20px -10px;
-    border-radius: 4px;
-}
-.restaurant {
-    background:#fff8fe;
-    color:rgb(31, 30, 30);
-    position: relative;
-    padding: 2%;
-    width: 100%;
-    height: auto;
-    box-shadow: black 0 10px 20px -10px;
-    border-radius: 4px;
-    margin-top: 2%;
-    margin-bottom: 2%;
-}
 
-.header {
+img {
     position: relative;
     text-align: center;
     width: 100%;
     height: auto;
-    border-radius: 4px;
-}
-
-.footer {
-    position: relative;
-    width: 100%;
-    bottom: 0;
-    color: rgb(255, 255, 255);
-    text-align: center;
-    background: #0F574E;
-    padding: 2%;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    box-shadow: black 0 10px 20px -10px;
-    border-radius: 4px;
 }
 
 hr {
-    border-top: 1px solid black;
+    border-top: 1px solid #B800A5;
 }
 
 a {
@@ -148,3 +114,40 @@ a {
     margin: 0.3em;;
 }
 
+.lists {
+    background:#fff8fe;
+    color:rgb(31, 30, 30);
+    position: relative;
+    padding: 2%;
+    width: 100%;
+    height: auto;
+    box-shadow: black 0 10px 20px -10px;
+    border-radius: 4px;
+}
+
+.restaurant {
+    background:#fff8fe;
+    color:rgb(31, 30, 30);
+    position: relative;
+    padding: 2%;
+    width: 100%;
+    height: auto;
+    box-shadow: black 0 10px 20px -10px;
+    border-radius: 4px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.footer {
+    position: relative;
+    width: 100%;
+    bottom: 0;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    background: #0F574E;
+    padding: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    box-shadow: black 0 10px 20px -10px;
+    border-radius: 4px;
+}
