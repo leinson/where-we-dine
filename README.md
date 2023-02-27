@@ -51,7 +51,7 @@
 - Admin can remove restaurants in app
 - Search bar for free word search
 
-## How to run on your own computer
+## How to use locally
 - Clone repository to your computer
 - Add file: `.env` and add to it: 
     - `DATABASE_URL=postgresql+psycopg2:///yourusername`
