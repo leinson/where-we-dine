@@ -44,10 +44,12 @@
                     <br>
                     Review submitted at {{ review.sent_at }}<br>
                 </p>
-                <form action="/delete_review/{{ review.id }}" method=POST>
-                    <input type="submit" value="Delete review" name="delete" onClick="return confirmSubmit()">
-                    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-                </form>
+                <div class="right_align">
+                    <form action="/delete_review/{{ review.id }}" method=POST>
+                        <input type="submit" value="Delete" name="delete" onClick="return confirmSubmit()">
+                        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+                    </form>
+                </div>
                 <hr>
             {% endfor %}
         </div>

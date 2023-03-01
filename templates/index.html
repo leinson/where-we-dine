@@ -37,6 +37,7 @@
                 <input type="submit" value="Search">
                 <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
             </form>
+            <hr>
             <form action="/sort_by_score" method=POST>
                 <label for="score">Rating:</label>
                 <input type="radio" id="score" name="score" value="Low" required>
@@ -46,8 +47,9 @@
                 <input type="submit" value="Search">
                 <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
             </form>
+            <hr>
             <form action="/sort_by_price" method=POST>
-                <label for="price">Pricing:</label>
+                <label for="price">Price:</label>
                 <input type="radio" id="price" name="price" value="Low" required>
                 <label for="price">Low</label>
                 <input type="radio" id="price" name="price" value="High" required>
@@ -55,8 +57,9 @@
                 <input type="submit" value="Search">
                 <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
             </form>
-            <br>
-            <a href="/">All restaurants</a><br>
+            <div class="right_align">
+                <a href="/">All restaurants</a><br>
+            </div>
         </div>
         <p>{{ cuisine_name }}</p>
         {% if count == 1 %}
@@ -74,7 +77,9 @@
                 {% else %}
                     <p>Rated: {{ restaurant.coalesce }}/10.00</p> 
                 {% endif %}
-                <a href="/reviews/{{ restaurant.id }}">View reviews</a>
+                <div class="right_align">
+                    <a href="/reviews/{{ restaurant.id }}">View reviews</a>
+                </div>
                 <hr>
             {% endfor %}
         </div>

@@ -26,9 +26,11 @@
                 <br>
                 Price: {{ restaurant.price }}<br>
                 <br>
-                {% if restaurant.web_link != '' %}
-                    <a href="{{ restaurant.web_link }}" target="_blank">Restaurant's website</a>
-                {% endif %}
+                <div class="right_align">
+                    {% if restaurant.web_link != '' %}
+                        <a href="{{ restaurant.web_link }}" target="_blank">Restaurant's website</a>
+                    {% endif %}
+                </div>
             </p>
             Cuisine: - 
             {% for cuisine in cuisines %}
@@ -44,11 +46,13 @@
                 <a href="/login">Log in</a> to write a review<br>
             {% endif %}
         </div>
-        {% if count == 1 %}
-            <p>This restaurant has {{ count }} review</p>
-        {% else %}
-            <p>This restaurant has {{ count }} reviews</p>
-        {% endif %}
+        <div class="right_align">
+            {% if count == 1 %}
+                <p>This restaurant has {{ count }} review</p>
+            {% else %}
+                <p>This restaurant has {{ count }} reviews</p>
+            {% endif %}
+        </div>
         <br>
         {% for review in reviews %}
             <div class="lists">
@@ -64,12 +68,14 @@
                     <br>
                     Review submitted at {{ review.sent_at }}<br>
                 </p>
-                {% if is_admin == True %}
-                <form action="/delete_review/{{ review.id }}" method=POST>
-                    <input type="submit" value="Delete review">
-                    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-                </form>
-                {% endif %}
+                <div class="right_align">
+                    {% if is_admin == True %}
+                    <form action="/delete_review/{{ review.id }}" method=POST>
+                        <input type="submit" value="Delete review">
+                        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+                    </form>
+                    {% endif %}
+                </div>
                 <hr>
             </div>
         {% endfor %}
