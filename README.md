@@ -10,6 +10,7 @@
     - password: `test123`
 - Refresh the page if you get "Internal server error" when you open the link
 - If fly.io for some other reason does not work, you can test the application locally on your computer. Instructions are at the bottom of the README.
+- /9.3.2023 **NOTE:** After the deadline, I noticed that the search functionality filters that work perfectly on my computer, does not work without logging in on other computers/devices. To test the functionality, please log in. I will update this to a functioning version after this project is scored and reviewed.
 
 ## Features 
 
