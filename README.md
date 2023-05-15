@@ -10,7 +10,6 @@
     - password: `test123`
 - Refresh the page if you get "Internal server error" when you open the link
 - If fly.io for some other reason does not work, you can test the application locally on your computer. Instructions are at the bottom of the README.
-- Note: Faulty CSRF check fixed in the source code, not yet updated to fly.io
 
 ## Features 
 
