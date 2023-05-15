@@ -35,7 +35,6 @@
                     {% endfor %}
                 </select>
                 <input type="submit" value="Search">
-                <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
             </form>
             <hr>
             <form action="/sort_by_score" method=POST>
@@ -45,7 +44,6 @@
                 <input type="radio" id="score" name="score" value="High" required>
                 <label for="score">High</label>
                 <input type="submit" value="Search">
-                <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
             </form>
             <hr>
             <form action="/sort_by_price" method=POST>
@@ -55,7 +53,6 @@
                 <input type="radio" id="price" name="price" value="High" required>
                 <label for="price">High</label>
                 <input type="submit" value="Search">
-                <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
             </form>
             <div class="right_align">
                 <a href="/">All restaurants</a><br>

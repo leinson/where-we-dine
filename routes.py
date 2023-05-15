@@ -157,8 +157,6 @@ def delete_cuisine(id):
 
 @app.route("/sort_by_cuisine", methods=["POST"])
 def sort_by_cuisine():
-    if session["csrf_token"] != request.form["csrf_token"]:
-        abort(403)
     cuisine_id = request.form.get("cuisine_id", "")
     user_id = users.is_logged_in()
     is_admin = users.is_admin()
@@ -169,8 +167,6 @@ def sort_by_cuisine():
 
 @app.route("/sort_by_score", methods=["POST"])
 def sort_by_score():
-    if session["csrf_token"] != request.form["csrf_token"]:
-        abort(403)
     score = request.form.get("score", "")
     user_id = users.is_logged_in()
     is_admin = users.is_admin()
@@ -183,8 +179,6 @@ def sort_by_score():
 
 @app.route("/sort_by_price", methods=["POST"])
 def sort_by_price():
-    if session["csrf_token"] != request.form["csrf_token"]:
-        abort(403)
     price = request.form.get("price", "")
     user_id = users.is_logged_in()
     is_admin = users.is_admin()
